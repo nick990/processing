@@ -1,7 +1,7 @@
 import processing.svg.*;
 
 
-int TILE_SIZE=500;
+int TILE_SIZE=50;
 double TILE_PADDING_RATIO = 1.0/5.0;
 int COLS=16;
 int ROWS=9;
@@ -13,10 +13,11 @@ int h=mosaic_height+PADDING*2;
 ArrayList<Tile> tiles;
 TileProvider tileProvider;
 void setup() {
-    println("image: "+w+" x "+h);
+  println("image: "+w+" x "+h);
   println("mosaic: "+mosaic_width+" x "+mosaic_height);
+  TileProviderSingleton tps=TileProviderSingleton.getInstance(this);
   //size(3199,3199, SVG, "out.svg");
- size(5499,3399);
+ size(549,339);
  smooth(8);
   tileProvider = new TileProvider();
   tiles = new ArrayList<Tile>();
