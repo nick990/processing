@@ -1,25 +1,23 @@
 import processing.svg.*;
+import java.util.Random;
 
-
-int TILE_SIZE=50;
+int TILE_SIZE=500;
 double TILE_PADDING_RATIO = 1.0/5.0;
-int COLS=16;
-int ROWS=9;
+int COLS=10;
+int ROWS=10;
 int PADDING = TILE_SIZE/2;
 int mosaic_width = (int)((COLS-1)*(TILE_SIZE*(1-2.0*TILE_PADDING_RATIO))+TILE_SIZE);
 int mosaic_height = (int) ((ROWS-1)*(TILE_SIZE*(1-2.0*TILE_PADDING_RATIO))+TILE_SIZE);
 int w=mosaic_width+PADDING*2;
 int h=mosaic_height+PADDING*2;
 ArrayList<Tile> tiles;
-TileProvider tileProvider;
 void setup() {
   println("image: "+w+" x "+h);
   println("mosaic: "+mosaic_width+" x "+mosaic_height);
-  TileProviderSingleton tps=TileProviderSingleton.getInstance(this);
+  TileProviderSingleton.init(this);
   //size(3199,3199, SVG, "out.svg");
- size(549,339);
+ size(3699,3699);
  smooth(8);
-  tileProvider = new TileProvider();
   tiles = new ArrayList<Tile>();
     for(int r=0;r<ROWS;r++){
       for(int c=0;c<COLS;c++){
@@ -29,15 +27,16 @@ void setup() {
         int red = (int)(rComponent*255);
         int  green = (int)(cComponent*255);
         color col = color(red, green, 255/2);
-        int imageIndex=tileProvider.getRandomIndex();
+        int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
         boolean negative=false;
-        tiles.add(new Tile(r,c,TILE_SIZE,TILE_PADDING_RATIO,col,imageIndex,negative,tileProvider,0,0,0));
+        tiles.add(new Tile(r,c,TILE_SIZE,TILE_PADDING_RATIO,col,imageIndex,negative,0,0,0));
       }
   }
 
   
   int MAX_LEVEL=3;
-  for(int i=0;i<MAX_LEVEL-1;i++){
+  for(int i=0;i<MAX_LEVEL;i++){
+    println("Generating level "+i+"...");
     ArrayList<Tile> newTiles = new ArrayList<Tile>();
     for(Tile t:tiles){
         if(new Random().nextDouble()>0.7){
@@ -48,7 +47,8 @@ void setup() {
     }
     tiles=newTiles;
   }
-  
+
+  println("Reordering...");
  for(int i=0;i<tiles.size();i++){
     for(int j=i+1;i<tiles.size();i++){
                 Tile t_i = tiles.get(i);
@@ -63,8 +63,8 @@ void setup() {
         }
 
 }
-
 void draw() {
+  println("Drawing...");
   background(255);
   translate(PADDING,PADDING);  
   for(Tile t : tiles){
