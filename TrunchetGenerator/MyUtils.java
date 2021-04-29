@@ -1,5 +1,6 @@
 import processing.core.*;
 import processing.data.*;
+import java.util.ArrayList;
 
 public class MyUtils{
     private static PApplet app;
@@ -23,5 +24,12 @@ public class MyUtils{
         int red = (int)(yComponent*255);
         int  green = (int)(xComponent*255);
         return app.color(red, green, 255/2);
+    }
+    public static String ArrayIntToString(ArrayList<Integer> list){
+        String s="";
+        for(int i:list){
+            s+=i+",";
+        }
+        return s;
     }
 }
