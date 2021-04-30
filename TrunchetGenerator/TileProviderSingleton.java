@@ -9,7 +9,7 @@ public class TileProviderSingleton{
   private ArrayList<PImage> imagesNegative;
   public int MAX_TILES_INDEX = 15;
   public ArrayList<Integer> TILES_INDEXES;
-  public ArrayList<Integer> TILES_INDEXES_VALID;
+  // public ArrayList<Integer> TILES_INDEXES_VALID;
   
   public static void init(PApplet app){
     TileProviderSingleton.app=app;
@@ -24,7 +24,6 @@ public class TileProviderSingleton{
         imagesNegative.add(app.loadImage("tiles/tile"+i+"_neg.png"));
       }
       initTilesIndexes();
-      TILES_INDEXES_VALID=new ArrayList<Integer>();
   }
 
   private void initTilesIndexes(){
@@ -54,9 +53,9 @@ public class TileProviderSingleton{
   }
 
   public int getRandomIndex(){
-    if(this.TILES_INDEXES_VALID.size()==0)
+    if(Constants.TILES_INDEXES_VALID.size()==0)
       return new Random().nextInt(images.size());
-    return this.TILES_INDEXES_VALID.get(new Random().nextInt(TILES_INDEXES_VALID.size()));
+    return Constants.TILES_INDEXES_VALID.get(new Random().nextInt(Constants.TILES_INDEXES_VALID.size()));
   }
 
   //Genera il subset di indici di dimensione size
@@ -65,10 +64,10 @@ public class TileProviderSingleton{
     if(size<0)
       size = new Random().nextInt(MAX_TILES_INDEX)+1;
     initTilesIndexes();
-    this.TILES_INDEXES_VALID=new ArrayList<Integer>();
+    Constants.TILES_INDEXES_VALID=new ArrayList<Integer>();
     while((size)>0){
       int i = new Random().nextInt(TILES_INDEXES.size());
-      TILES_INDEXES_VALID.add(TILES_INDEXES.get(i));
+      Constants.TILES_INDEXES_VALID.add(TILES_INDEXES.get(i));
       TILES_INDEXES.remove(i);
       size--;
     }

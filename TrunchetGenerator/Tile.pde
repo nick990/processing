@@ -51,20 +51,6 @@ class Tile{
       this.draw();
     }
   }
-  
-//  ArrayList<Tile> split(){
-//      ArrayList<Tile> children=new ArrayList<Tile>();
-//       for(int rr=0;rr<2;rr++){
-//           for(int cc=0;cc<2;cc++){
-//               int childrenImageIndex=TileProviderSingleton.getInstance().getRandomIndex();
-//               int childOffsetX=(int)(x+size*Constants.TILE_PADDING_RATIO/2);
-//               int childOffsetY=(int)(y+size*Constants.TILE_PADDING_RATIO/2);
-//               Tile child =new Tile(rr,cc,childrenImageIndex,!negative,layer+1,childOffsetX,childOffsetY); 
-//               children.add(child);
-//           }
-//       }
-//       return children;
-//   }
 
   void split(int depth){
     if(depth>=1){

@@ -170,7 +170,7 @@ String getFolderName(){
 
 String getFileName(){
   DecimalFormat df2 = new DecimalFormat("#.##");
-  return "lev"+Constants.LEVELS+"_rate"+df2.format(Constants.SPLIT_RATE)+"_corner"+Constants.CORNER+"_indexes"+MyUtils.ArrayIntToString(TileProviderSingleton.getInstance().TILES_INDEXES_VALID);
+  return "lev"+Constants.LEVELS+"_rate"+df2.format(Constants.SPLIT_RATE)+"_corner"+Constants.CORNER+"_indexes"+MyUtils.ArrayIntToString(Constants.TILES_INDEXES_VALID);
 }
 
 
@@ -198,15 +198,15 @@ void draw() {
   translate(PADDING,PADDING);  
   for(int i=0;i<20;i++){
     println(i+")");
-    randomize();
-    generate4();
+    // randomize();
+    generate1();
     background(0);
     int count=1;
     for(Tile t : flattenTree){
       println((count++)+"/"+flattenTree.size());
       t.drawTree(); 
     }
-    save("out/generate4/"+getFolderName()+"_"+getFileName()+".png");
+    save("out/"+i+"_"+getFolderName()+"_"+getFileName()+".png");
     println("saved");
   }
   
