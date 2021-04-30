@@ -23,7 +23,7 @@ public class MyUtils{
         double yComponent = y/(double)app.height;
         int red = (int)(yComponent*255);
         int  green = (int)(xComponent*255);
-        return app.color(red, green, 255/2);
+        return app.color(red, green, Constants.BLUE);
     }
     public static String ArrayIntToString(ArrayList<Integer> list){
         String s="";

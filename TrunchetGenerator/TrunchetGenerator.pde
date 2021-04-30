@@ -30,15 +30,31 @@ public void reorderFlattenTree(ArrayList<Tile> tiles){
     }
 }
 
-void randomize(){
-  int max_levels = 3;
-  double min_rate = 0.2; 
-  Constants.LEVELS=new Random().nextInt(max_levels)+1;
-  Constants.SPLIT_RATE=new Random().nextDouble()*(1.0-min_rate)+min_rate;
-  TileProviderSingleton.getInstance().generateRandomIndexes(1);
+public ArrayList<Tile> makeHoles(ArrayList<Tile> tiles){
+  ArrayList<Tile> aux = new ArrayList<Tile>();
+  for(Tile t:tiles){
+    if(new Random().nextDouble()<0.7){
+      aux.add(t);
+    }
+  }
+  return aux;
 }
 
-void generate(){  
+// Cambia le constanti globali per randomizzare la generazione
+void randomize(){
+  int max_levels = 5;
+  double min_rate = 0.2;
+  double max_rate = 0.8;
+  int corner_max=3;
+  Constants.LEVELS=new Random().nextInt(max_levels)+1;
+  Constants.SPLIT_RATE=new Random().nextDouble()*(max_rate-min_rate)+min_rate;
+  TileProviderSingleton.getInstance().generateRandomIndexes(-1);
+  Constants.CORNER=new Random().nextInt(corner_max)+1;
+}
+
+// Genera un nuovo albero
+// Al termine ho flattenTree ordinato e pronto per essere disegnato
+void generate1(){  
   println(getFileName());
   firstLevel = new ArrayList<Tile>();
   for(int r=0;r<Constants.ROWS;r++){
@@ -66,6 +82,87 @@ void generate(){
     reorderFlattenTree(flattenTree);
   }
 }
+//spliita con le colonne
+void generate2(){  
+  println(getFileName());
+  firstLevel = new ArrayList<Tile>();
+  for(int r=0;r<Constants.ROWS;r++){
+    for(int c=0;c<Constants.COLS;c++){ 
+      int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
+      boolean negative=false;
+      Tile t = new Tile(r,c,imageIndex,negative,0,0,0);
+      firstLevel.add(t);
+      t.split(c+1);
+    }
+  }
+  flattenTree = getFlattenTree(firstLevel);
+  reorderFlattenTree(flattenTree);
+  }
+
+//angolo in basso a dx  
+void generate3(){  
+  println(getFileName());
+  firstLevel = new ArrayList<Tile>();
+  for(int r=0;r<Constants.ROWS;r++){
+    for(int c=0;c<Constants.COLS;c++){ 
+      int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
+      boolean negative=false;
+      Tile t = new Tile(r,c,imageIndex,negative,0,0,0);
+      firstLevel.add(t);      
+      int levelFromR=r;
+      int levelFromC=c;
+      int depth = Math.min(levelFromC,levelFromR);
+      t.split(depth);
+    }
+  }
+  flattenTree = getFlattenTree(firstLevel);
+  reorderFlattenTree(flattenTree);
+}
+
+//quadranti
+void generate4(){
+  println(getFileName());
+  firstLevel = new ArrayList<Tile>();
+  for(int r=0;r<Constants.ROWS;r++){
+    for(int c=0;c<Constants.COLS;c++){ 
+      int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
+      boolean negative=false;
+      Tile t = new Tile(r,c,imageIndex,negative,0,0,0);
+      int depth=0;
+      int corner=Constants.CORNER;
+      //Q1
+      if(r<Constants.ROWS/2 && c<Constants.COLS/2){
+        depth = Math.min(r,c);
+        if(r>corner&&c>corner)
+          continue;
+      }
+      //Q2
+      if(r<Constants.ROWS/2&&c>=Constants.COLS/2){
+        depth=Math.min(r,Constants.COLS-1-c);
+         if(r>corner&&Constants.COLS-1-c>corner)
+          continue;
+      }
+      //Q3
+      if(r>=Constants.ROWS/2&&c<Constants.COLS/2){
+        depth=Math.min(Constants.ROWS-1-r,c);
+         if(Constants.ROWS-1-r>corner&&c>corner)
+          continue;
+      }
+      //Q4
+      if(r>=Constants.ROWS/2&&c>=Constants.COLS/2){        
+        depth=Math.min(Constants.ROWS-1-r,Constants.COLS-1-c);
+         if(Constants.ROWS-1-r>corner&&Constants.COLS-1-c>corner)
+          continue;
+      }
+      t.split(depth);
+      firstLevel.add(t);      
+    }
+  }
+  flattenTree = getFlattenTree(firstLevel);
+  reorderFlattenTree(flattenTree);
+}
+
+
 
 String getFolderName(){
   return Constants.ROWS+"x"+Constants.COLS+"_"+Constants.TILE_SIZE;
@@ -73,7 +170,7 @@ String getFolderName(){
 
 String getFileName(){
   DecimalFormat df2 = new DecimalFormat("#.##");
-  return "lev"+Constants.LEVELS+"_rate"+df2.format(Constants.SPLIT_RATE)+"_indexes"+MyUtils.ArrayIntToString(TileProviderSingleton.getInstance().TILES_INDEXES_VALID);
+  return "lev"+Constants.LEVELS+"_rate"+df2.format(Constants.SPLIT_RATE)+"_corner"+Constants.CORNER+"_indexes"+MyUtils.ArrayIntToString(TileProviderSingleton.getInstance().TILES_INDEXES_VALID);
 }
 
 
@@ -89,12 +186,10 @@ void calculateSize(){
 
 void settings(){
   calculateSize();
-  smooth(8);
-  
+  smooth(Constants.SMOOTH);  
 }
 
 void setup() {
-  //surface.setResizable(true);
   TileProviderSingleton.init(this);
   MyUtils.init(this);
   Constants.init(this);
@@ -104,13 +199,14 @@ void draw() {
   for(int i=0;i<20;i++){
     println(i+")");
     randomize();
-    generate();
-    background(255);
-    
+    generate4();
+    background(0);
+    int count=1;
     for(Tile t : flattenTree){
+      println((count++)+"/"+flattenTree.size());
       t.drawTree(); 
     }
-    save("out/"+getFolderName()+"_"+getFileName()+".png");
+    save("out/generate4/"+getFolderName()+"_"+getFileName()+".png");
     println("saved");
   }
   

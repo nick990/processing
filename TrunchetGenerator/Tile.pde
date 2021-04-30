@@ -17,7 +17,7 @@ class Tile{
   color bgColor;
   //indica se usare la tile negatica o positiva
   boolean negative;
-  //livello nella window (z-index) 0 è il basso
+  //livello nella window (z index) 0 è il più basso
   int layer;
 
   ArrayList<Tile> children;
@@ -67,8 +67,6 @@ class Tile{
 //   }
 
   void split(int depth){
-    // if(new Random().nextDouble()>Constants.SPLIT_RATE/(this.layer+1))
-    //   return;
     if(depth>=1){
       for(int rr=0;rr<2;rr++){ 
         for(int cc=0;cc<2;cc++){
