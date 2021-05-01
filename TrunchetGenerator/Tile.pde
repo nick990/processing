@@ -7,7 +7,7 @@ class Tile{
   //dimensione della tile
   //calcolata da Constants.TILE_SIZE e layer
   private int size;
-  // riga,colonna nella griglai
+  // riga,colonna nella griglia
   int r,c;
   // index dell'immagine della tile
   int tileImageIndex;
@@ -33,12 +33,12 @@ class Tile{
     this.offsetY=offsetY;
     this.x=(int)(c*(size*(1-2*Constants.TILE_PADDING_RATIO)))+offsetX;
     this.y=(int)(r*(size*(1-2*Constants.TILE_PADDING_RATIO)))+offsetY;
-    this.bgColor=MyUtils.getColorFromPoitionInWindow(x+size/2,y+size/2);
+    this.bgColor=MyUtils.getColorFromPositionInWindow(x+size/2,y+size/2);
     this.image = TileProviderSingleton.getInstance().getImageByIndex(this.tileImageIndex,this.negative);
     this.children = new ArrayList<Tile>();
   }
   void draw(){
-    tint(this.bgColor);
+    //tint(this.bgColor);
     image(this.image,x,y,this.size,this.size);
   }
 
