@@ -38,7 +38,7 @@ class Tile{
     this.children = new ArrayList<Tile>();
   }
   void draw(){
-    //tint(this.bgColor);
+    tint(this.bgColor);
     image(this.image,x,y,this.size,this.size);
   }
 
