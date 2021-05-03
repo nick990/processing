@@ -61,7 +61,7 @@ void generate1(){
     for(int c=0;c<Constants.COLS;c++){ 
       int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
       boolean negative=false;
-      firstLevel.add(new Tile(r,c,imageIndex,negative,0,0,0));
+      firstLevel.add(new Tile(r,c,imageIndex,negative,0,0,0,null));
     }
   }
   flattenTree = getFlattenTree(firstLevel);
@@ -83,84 +83,84 @@ void generate1(){
   }
 }
 //spliita con le colonne
-void generate2(){  
-  println(getFileName());
-  firstLevel = new ArrayList<Tile>();
-  for(int r=0;r<Constants.ROWS;r++){
-    for(int c=0;c<Constants.COLS;c++){ 
-      int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
-      boolean negative=false;
-      Tile t = new Tile(r,c,imageIndex,negative,0,0,0);
-      firstLevel.add(t);
-      t.split(c+1);
-    }
-  }
-  flattenTree = getFlattenTree(firstLevel);
-  reorderFlattenTree(flattenTree);
-  }
+// void generate2(){  
+//   println(getFileName());
+//   firstLevel = new ArrayList<Tile>();
+//   for(int r=0;r<Constants.ROWS;r++){
+//     for(int c=0;c<Constants.COLS;c++){ 
+//       int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
+//       boolean negative=false;
+//       Tile t = new Tile(r,c,imageIndex,negative,0,0,0);
+//       firstLevel.add(t);
+//       t.split(c+1);
+//     }
+//   }
+//   flattenTree = getFlattenTree(firstLevel);
+//   reorderFlattenTree(flattenTree);
+//   }
 
 //angolo in basso a dx  
-void generate3(){  
-  println(getFileName());
-  firstLevel = new ArrayList<Tile>();
-  for(int r=0;r<Constants.ROWS;r++){
-    for(int c=0;c<Constants.COLS;c++){ 
-      int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
-      boolean negative=false;
-      Tile t = new Tile(r,c,imageIndex,negative,0,0,0);
-      firstLevel.add(t);      
-      int levelFromR=r;
-      int levelFromC=c;
-      int depth = Math.min(levelFromC,levelFromR);
-      t.split(depth);
-    }
-  }
-  flattenTree = getFlattenTree(firstLevel);
-  reorderFlattenTree(flattenTree);
-}
+// void generate3(){  
+//   println(getFileName());
+//   firstLevel = new ArrayList<Tile>();
+//   for(int r=0;r<Constants.ROWS;r++){
+//     for(int c=0;c<Constants.COLS;c++){ 
+//       int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
+//       boolean negative=false;
+//       Tile t = new Tile(r,c,imageIndex,negative,0,0,0);
+//       firstLevel.add(t);      
+//       int levelFromR=r;
+//       int levelFromC=c;
+//       int depth = Math.min(levelFromC,levelFromR);
+//       t.split(depth);
+//     }
+//   }
+//   flattenTree = getFlattenTree(firstLevel);
+//   reorderFlattenTree(flattenTree);
+// }
 
 //quadranti
-void generate4(){
-  println(getFileName());
-  firstLevel = new ArrayList<Tile>();
-  for(int r=0;r<Constants.ROWS;r++){
-    for(int c=0;c<Constants.COLS;c++){ 
-      int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
-      boolean negative=false;
-      Tile t = new Tile(r,c,imageIndex,negative,0,0,0);
-      int depth=0;
-      int corner=Constants.CORNER;
-      //Q1
-      if(r<Constants.ROWS/2 && c<Constants.COLS/2){
-        depth = Math.min(r,c);
-        if(r>corner&&c>corner)
-          continue;
-      }
-      //Q2
-      if(r<Constants.ROWS/2&&c>=Constants.COLS/2){
-        depth=Math.min(r,Constants.COLS-1-c);
-         if(r>corner&&Constants.COLS-1-c>corner)
-          continue;
-      }
-      //Q3
-      if(r>=Constants.ROWS/2&&c<Constants.COLS/2){
-        depth=Math.min(Constants.ROWS-1-r,c);
-         if(Constants.ROWS-1-r>corner&&c>corner)
-          continue;
-      }
-      //Q4
-      if(r>=Constants.ROWS/2&&c>=Constants.COLS/2){        
-        depth=Math.min(Constants.ROWS-1-r,Constants.COLS-1-c);
-         if(Constants.ROWS-1-r>corner&&Constants.COLS-1-c>corner)
-          continue;
-      }
-      t.split(depth);
-      firstLevel.add(t);      
-    }
-  }
-  flattenTree = getFlattenTree(firstLevel);
-  reorderFlattenTree(flattenTree);
-}
+// void generate4(){
+//   println(getFileName());
+//   firstLevel = new ArrayList<Tile>();
+//   for(int r=0;r<Constants.ROWS;r++){
+//     for(int c=0;c<Constants.COLS;c++){ 
+//       int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
+//       boolean negative=false;
+//       Tile t = new Tile(r,c,imageIndex,negative,0,0,0);
+//       int depth=0;
+//       int corner=Constants.CORNER;
+//       //Q1
+//       if(r<Constants.ROWS/2 && c<Constants.COLS/2){
+//         depth = Math.min(r,c);
+//         if(r>corner&&c>corner)
+//           continue;
+//       }
+//       //Q2
+//       if(r<Constants.ROWS/2&&c>=Constants.COLS/2){
+//         depth=Math.min(r,Constants.COLS-1-c);
+//          if(r>corner&&Constants.COLS-1-c>corner)
+//           continue;
+//       }
+//       //Q3
+//       if(r>=Constants.ROWS/2&&c<Constants.COLS/2){
+//         depth=Math.min(Constants.ROWS-1-r,c);
+//          if(Constants.ROWS-1-r>corner&&c>corner)
+//           continue;
+//       }
+//       //Q4
+//       if(r>=Constants.ROWS/2&&c>=Constants.COLS/2){        
+//         depth=Math.min(Constants.ROWS-1-r,Constants.COLS-1-c);
+//          if(Constants.ROWS-1-r>corner&&Constants.COLS-1-c>corner)
+//           continue;
+//       }
+//       t.split(depth);
+//       firstLevel.add(t);      
+//     }
+//   }
+//   flattenTree = getFlattenTree(firstLevel);
+//   reorderFlattenTree(flattenTree);
+// }
 
 
 
@@ -196,19 +196,19 @@ void setup() {
 }
 void draw() {
   translate(PADDING,PADDING);  
-  for(int i=0;i<20;i++){
-    println(i+")");
+  // for(int i=0;i<20;i++){
+  //   println(i+")");
     // randomize();
     generate1();
-    background(0);
+    background(255);
     int count=1;
     for(Tile t : flattenTree){
+      // if(count%100==0)
       println((count++)+"/"+flattenTree.size());
       t.drawTree(); 
     }
-    save("out/"+i+"_"+getFolderName()+"_"+getFileName()+".png");
+    save("out/"+getFolderName()+"_"+getFileName()+".jpg");
     println("saved");
+    exit();
   }
-  
- exit();
-}
+

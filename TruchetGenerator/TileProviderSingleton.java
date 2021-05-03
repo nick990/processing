@@ -9,7 +9,6 @@ public class TileProviderSingleton{
   private ArrayList<PImage> imagesNegative;
   public int MAX_TILES_INDEX = 15;
   public ArrayList<Integer> TILES_INDEXES;
-  // public ArrayList<Integer> TILES_INDEXES_VALID;
   
   public static void init(PApplet app){
     TileProviderSingleton.app=app;

@@ -13,8 +13,11 @@ class Tile{
   int tileImageIndex;
   // immagine della tile
   private PImage image;
-  // colore
+  // colore di BG
   color bgColor;
+  // immagine di BG
+  private PImage bgImage;
+  private color bgImageColor;
   //indica se usare la tile negatica o positiva
   boolean negative;
   //livello nella window (z index) 0 è il più basso
@@ -22,7 +25,7 @@ class Tile{
 
   ArrayList<Tile> children;
 
-  Tile(int r, int c,int tileImageIndex,boolean negative,int layer,int offsetX,int offsetY){
+  Tile(int r, int c,int tileImageIndex,boolean negative,int layer,int offsetX,int offsetY,PImage bgImage){
     this.r=r;
     this.c=c;
     this.tileImageIndex=tileImageIndex;
@@ -33,12 +36,19 @@ class Tile{
     this.offsetY=offsetY;
     this.x=(int)(c*(size*(1-2*Constants.TILE_PADDING_RATIO)))+offsetX;
     this.y=(int)(r*(size*(1-2*Constants.TILE_PADDING_RATIO)))+offsetY;
-    this.bgColor=MyUtils.getColorFromPositionInWindow(x+size/2,y+size/2);
     this.image = TileProviderSingleton.getInstance().getImageByIndex(this.tileImageIndex,this.negative);
     this.children = new ArrayList<Tile>();
+    this.bgImage = bgImage;
+    if(this.bgImage != null)
+      this.bgImageColor=MyUtils.getAvgColor(this.bgImage);
+    this.bgColor=MyUtils.getColorFromPositionInWindow(x+size/2,y+size/2);
   }
+
   void draw(){
-    tint(this.bgColor);
+    if(this.bgImage!=null && this.layer>1)
+      tint(this.bgImageColor);
+    else
+      tint(this.bgColor);
     image(this.image,x,y,this.size,this.size);
   }
 
@@ -54,12 +64,16 @@ class Tile{
 
   void split(int depth){
     if(depth>=1){
+      PImage[][] childrenBgImages=new PImage[2][2];
+      if(this.bgImage!=null)
+        childrenBgImages=MyUtils.getSubimagesGrid(this.bgImage,2,2);
       for(int rr=0;rr<2;rr++){ 
         for(int cc=0;cc<2;cc++){
           int childrenImageIndex=TileProviderSingleton.getInstance().getRandomIndex();
           int childOffsetX=(int)(x+size*Constants.TILE_PADDING_RATIO/2);
           int childOffsetY=(int)(y+size*Constants.TILE_PADDING_RATIO/2);
-          Tile child =new Tile(rr,cc,childrenImageIndex,!negative,layer+1,childOffsetX,childOffsetY); 
+          PImage childImage=childrenBgImages[rr][cc];
+          Tile child =new Tile(rr,cc,childrenImageIndex,!negative,layer+1,childOffsetX,childOffsetY,childImage); 
           this.children.add(child);
         }
       }
@@ -69,6 +83,32 @@ class Tile{
       }
     }   
   }
+
+  boolean needSplit(){
+    if(this.bgImage==null)
+      return false;
+    if(this.size<2*Constants.MIN_TILE_SIZE)
+      return false;
+    int[][] colors = MyUtils.getAvgColorGrid(this.bgImage,2,2);
+    for(int r=0;r<2;r++){
+      for(int c=0;c<2;c++){
+        if(MyUtils.colorDistance(this.bgImageColor,colors[r][c])>Constants.SPLIT_THRESHOLD)
+          return true;
+      }
+    }
+    return false;
+  }
+
+  void generateSubTree(){
+    if(needSplit()){
+      split(1);
+      for(Tile t:this.children){
+        t.generateSubTree();
+      }
+    }
+  }
+
+
 
   ArrayList<Tile> getFlattenTree(){
     ArrayList<Tile> tree=new ArrayList<Tile>();
@@ -86,6 +126,6 @@ class Tile{
    * Clona senza figli
    */
   Tile clone(){
-  return new Tile(r,c,tileImageIndex,negative,layer,offsetX,offsetY);
+  return new Tile(r,c,tileImageIndex,negative,layer,offsetX,offsetY,this.bgImage);
   }
 }
