@@ -11,11 +11,11 @@ public class MyUtils{
         MyUtils.app=app;
     }
     public static int getSizeFromLayer(int layer){
-        return (int)(Constants.TILE_SIZE/(Math.pow(2,layer)));
+        return (int)(Globals.TILE_SIZE/(Math.pow(2,layer)));
     }
     public static int getColorFromPositionInGrid(int r, int c){
-        double rComponent = (double)r/(double)Constants.ROWS;
-        double cComponent = c/(double)Constants.COLS;
+        double rComponent = (double)r/(double)Globals.ROWS;
+        double cComponent = c/(double)Globals.COLS;
         int red = (int)(rComponent*255);
         int  green = (int)(cComponent*255);
         return app.color(red, green, 255/2);
@@ -25,7 +25,7 @@ public class MyUtils{
         double yComponent = y/((double)app.height*0.7);
         int red = (int)(yComponent*255);
         int  green = (int)(xComponent*255);
-        return app.color(red, green, Constants.BLUE);
+        return app.color(red, green, Globals.BLUE);
     }
     public static String ArrayIntToString(ArrayList<Integer> list){
         String s="";

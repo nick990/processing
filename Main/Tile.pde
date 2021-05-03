@@ -5,7 +5,7 @@ class Tile{
   //offset definito dal padre
   int offsetX,offsetY;
   //dimensione della tile
-  //calcolata da Constants.TILE_SIZE e layer
+  //calcolata da Globals.TILE_SIZE e layer
   private int size;
   // riga,colonna nella griglia
   int r,c;
@@ -34,8 +34,8 @@ class Tile{
     this.size=MyUtils.getSizeFromLayer(this.layer);
     this.offsetX=offsetX;
     this.offsetY=offsetY;
-    this.x=(int)(c*(size*(1-2*Constants.TILE_PADDING_RATIO)))+offsetX;
-    this.y=(int)(r*(size*(1-2*Constants.TILE_PADDING_RATIO)))+offsetY;
+    this.x=(int)(c*(size*(1-2*Globals.TILE_PADDING_RATIO)))+offsetX;
+    this.y=(int)(r*(size*(1-2*Globals.TILE_PADDING_RATIO)))+offsetY;
     this.image = TileProviderSingleton.getInstance().getImageByIndex(this.tileImageIndex,this.negative);
     this.children = new ArrayList<Tile>();
     this.bgImage = bgImage;
@@ -70,8 +70,8 @@ class Tile{
       for(int rr=0;rr<2;rr++){ 
         for(int cc=0;cc<2;cc++){
           int childrenImageIndex=TileProviderSingleton.getInstance().getRandomIndex();
-          int childOffsetX=(int)(x+size*Constants.TILE_PADDING_RATIO/2);
-          int childOffsetY=(int)(y+size*Constants.TILE_PADDING_RATIO/2);
+          int childOffsetX=(int)(x+size*Globals.TILE_PADDING_RATIO/2);
+          int childOffsetY=(int)(y+size*Globals.TILE_PADDING_RATIO/2);
           PImage childImage=childrenBgImages[rr][cc];
           Tile child =new Tile(rr,cc,childrenImageIndex,!negative,layer+1,childOffsetX,childOffsetY,childImage); 
           this.children.add(child);
@@ -87,12 +87,12 @@ class Tile{
   boolean needSplit(){
     if(this.bgImage==null)
       return false;
-    if(this.size<2*Constants.MIN_TILE_SIZE)
+    if(this.size<2*Globals.MIN_TILE_SIZE)
       return false;
     int[][] colors = MyUtils.getAvgColorGrid(this.bgImage,2,2);
     for(int r=0;r<2;r++){
       for(int c=0;c<2;c++){
-        if(MyUtils.colorDistance(this.bgImageColor,colors[r][c])>Constants.SPLIT_THRESHOLD)
+        if(MyUtils.colorDistance(this.bgImageColor,colors[r][c])>Globals.SPLIT_THRESHOLD)
           return true;
       }
     }

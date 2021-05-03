@@ -27,16 +27,16 @@ public void orderFlattenTree(ArrayList<Tile> tiles){
 PImage img;
 int[][] avgColors;
 PImage[][] imagesGrid;
-int PADDING = Constants.TILE_SIZE/2;
+int PADDING = Globals.TILE_SIZE/2;
 
 public String getFileName(){
-  return Constants.ROWS+"x"+Constants.COLS+"_tsize"+Constants.TILE_SIZE+"_th"+Constants.SPLIT_THRESHOLD+"_mintsize"+Constants.MIN_TILE_SIZE+"_indexes"+MyUtils.ArrayIntToString(Constants.TILES_INDEXES_VALID)+".png";
+  return Globals.ROWS+"x"+Globals.COLS+"_tsize"+Globals.TILE_SIZE+"_th"+Globals.SPLIT_THRESHOLD+"_mintsize"+Globals.MIN_TILE_SIZE+"_indexes"+MyUtils.ArrayIntToString(Globals.TILES_INDEXES_VALID)+".png";
 };
 
 ArrayList<Tile> generate(){  
   ArrayList<Tile> tree = new ArrayList<Tile>();
-  for(int r=0;r<Constants.ROWS;r++){
-    for(int c=0;c<Constants.COLS;c++){
+  for(int r=0;r<Globals.ROWS;r++){
+    for(int c=0;c<Globals.COLS;c++){
       PImage bgImage = imagesGrid[r][c];
       int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
       boolean negative=false;
@@ -52,34 +52,34 @@ ArrayList<Tile> generate(){
 
 void randomize(int size){
   TileProviderSingleton.getInstance().generateRandomIndexes(size);
-  // Constants.SPLIT_THRESHOLD=new Random().nextInt(70)+20;
+  // Globals.SPLIT_THRESHOLD=new Random().nextInt(70)+20;
 }
 
 void settings(){
   img = loadImage("images/ermellino.jpeg");
   img.filter(GRAY);
   double imgRatio = (double)img.width/(double)img.height;
-  Constants.ROWS = (int)(Constants.COLS/imgRatio);
-  int treeWidth = (int)((Constants.COLS-1)*(Constants.TILE_SIZE*(1-2.0*Constants.TILE_PADDING_RATIO))+Constants.TILE_SIZE);
-  int treeHeigth = (int) ((Constants.ROWS-1)*(Constants.TILE_SIZE*(1-2.0*Constants.TILE_PADDING_RATIO))+Constants.TILE_SIZE);
-  // Constants.WIDTH = Constants.COLS*Constants.TILE_SIZE;
-  // Constants.HEIGHT = Constants.ROWS*Constants.TILE_SIZE;
-  Constants.WIDTH=treeWidth+PADDING*2;
-  Constants.HEIGHT=treeHeigth+PADDING*2;
-  setSize(Constants.WIDTH, Constants.HEIGHT);
-  smooth(Constants.SMOOTH);  
+  Globals.ROWS = (int)(Globals.COLS/imgRatio);
+  int treeWidth = (int)((Globals.COLS-1)*(Globals.TILE_SIZE*(1-2.0*Globals.TILE_PADDING_RATIO))+Globals.TILE_SIZE);
+  int treeHeigth = (int) ((Globals.ROWS-1)*(Globals.TILE_SIZE*(1-2.0*Globals.TILE_PADDING_RATIO))+Globals.TILE_SIZE);
+  // Globals.WIDTH = Globals.COLS*Globals.TILE_SIZE;
+  // Globals.HEIGHT = Globals.ROWS*Globals.TILE_SIZE;
+  Globals.WIDTH=treeWidth+PADDING*2;
+  Globals.HEIGHT=treeHeigth+PADDING*2;
+  setSize(Globals.WIDTH, Globals.HEIGHT);
+  smooth(Globals.SMOOTH);  
 }
 
 void setup() {
   TileProviderSingleton.init(this);
   MyUtils.init(this);
-  avgColors = MyUtils.getAvgColorGrid(img,Constants.ROWS,Constants.COLS);
-  imagesGrid = MyUtils.getSubimagesGrid(img,Constants.ROWS,Constants.COLS);
-  Constants.init(this);
+  avgColors = MyUtils.getAvgColorGrid(img,Globals.ROWS,Globals.COLS);
+  imagesGrid = MyUtils.getSubimagesGrid(img,Globals.ROWS,Globals.COLS);
+  Globals.init(this);
 }
 void draw() {
-  // int offsetX = Constants.WIDTH/2-treeWidth/2;
-  // int offsetY = Constants.HEIGHT/2-treeHeigth/2;
+  // int offsetX = Globals.WIDTH/2-treeWidth/2;
+  // int offsetY = Globals.HEIGHT/2-treeHeigth/2;
   background(255);
   translate(PADDING,PADDING);
  

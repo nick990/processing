@@ -1,12 +1,12 @@
 import processing.core.*;
 import java.util.ArrayList;
 
-public class Constants{
+public class Globals{
     private static PApplet app;
     public static ArrayList<Integer> TILES_INDEXES_VALID;
     public static void init(PApplet app){
-        Constants.app=app;
-        Constants.TILES_INDEXES_VALID=new ArrayList<Integer>();
+        Globals.app=app;
+        Globals.TILES_INDEXES_VALID=new ArrayList<Integer>();
     }
     public static double TILE_PADDING_RATIO=1.0/5.0;
     public static int TILE_SIZE=500;

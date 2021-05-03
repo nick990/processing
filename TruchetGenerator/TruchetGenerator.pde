@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.text.DecimalFormat;
 
-int PADDING = Constants.TILE_SIZE/2;
+int PADDING = Globals.TILE_SIZE/2;
 int mosaic_width;
 int mosaic_height;
 int window_width;
@@ -46,10 +46,10 @@ void randomize(){
   double min_rate = 0.2;
   double max_rate = 0.8;
   int corner_max=3;
-  Constants.LEVELS=new Random().nextInt(max_levels)+1;
-  Constants.SPLIT_RATE=new Random().nextDouble()*(max_rate-min_rate)+min_rate;
+  Globals.LEVELS=new Random().nextInt(max_levels)+1;
+  Globals.SPLIT_RATE=new Random().nextDouble()*(max_rate-min_rate)+min_rate;
   TileProviderSingleton.getInstance().generateRandomIndexes(-1);
-  Constants.CORNER=new Random().nextInt(corner_max)+1;
+  Globals.CORNER=new Random().nextInt(corner_max)+1;
 }
 
 // Genera un nuovo albero
@@ -57,8 +57,8 @@ void randomize(){
 void generate1(){  
   println(getFileName());
   firstLevel = new ArrayList<Tile>();
-  for(int r=0;r<Constants.ROWS;r++){
-    for(int c=0;c<Constants.COLS;c++){ 
+  for(int r=0;r<Globals.ROWS;r++){
+    for(int c=0;c<Globals.COLS;c++){ 
       int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
       boolean negative=false;
       firstLevel.add(new Tile(r,c,imageIndex,negative,0,0,0,null));
@@ -68,14 +68,14 @@ void generate1(){
 
   // Splitto tutti fino al massimo livello
   // for(Tile t:firstLevel){
-  //     t.split(Constants.LEVELS-1);
+  //     t.split(Globals.LEVELS-1);
   // }
   // reorderFlattenTree(flattenTree);
 
   // Splitto il [SPLIT_RATE]% di ogni livello
-  for(int level=1;level<Constants.LEVELS;level++){
+  for(int level=1;level<Globals.LEVELS;level++){
     for(Tile t:flattenTree){
-      if(t.layer==level-1 && new Random().nextDouble()<Constants.SPLIT_RATE)
+      if(t.layer==level-1 && new Random().nextDouble()<Globals.SPLIT_RATE)
         t.split(1);
     }
     flattenTree = getFlattenTree(flattenTree);
@@ -86,8 +86,8 @@ void generate1(){
 // void generate2(){  
 //   println(getFileName());
 //   firstLevel = new ArrayList<Tile>();
-//   for(int r=0;r<Constants.ROWS;r++){
-//     for(int c=0;c<Constants.COLS;c++){ 
+//   for(int r=0;r<Globals.ROWS;r++){
+//     for(int c=0;c<Globals.COLS;c++){ 
 //       int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
 //       boolean negative=false;
 //       Tile t = new Tile(r,c,imageIndex,negative,0,0,0);
@@ -103,8 +103,8 @@ void generate1(){
 // void generate3(){  
 //   println(getFileName());
 //   firstLevel = new ArrayList<Tile>();
-//   for(int r=0;r<Constants.ROWS;r++){
-//     for(int c=0;c<Constants.COLS;c++){ 
+//   for(int r=0;r<Globals.ROWS;r++){
+//     for(int c=0;c<Globals.COLS;c++){ 
 //       int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
 //       boolean negative=false;
 //       Tile t = new Tile(r,c,imageIndex,negative,0,0,0);
@@ -123,35 +123,35 @@ void generate1(){
 // void generate4(){
 //   println(getFileName());
 //   firstLevel = new ArrayList<Tile>();
-//   for(int r=0;r<Constants.ROWS;r++){
-//     for(int c=0;c<Constants.COLS;c++){ 
+//   for(int r=0;r<Globals.ROWS;r++){
+//     for(int c=0;c<Globals.COLS;c++){ 
 //       int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
 //       boolean negative=false;
 //       Tile t = new Tile(r,c,imageIndex,negative,0,0,0);
 //       int depth=0;
-//       int corner=Constants.CORNER;
+//       int corner=Globals.CORNER;
 //       //Q1
-//       if(r<Constants.ROWS/2 && c<Constants.COLS/2){
+//       if(r<Globals.ROWS/2 && c<Globals.COLS/2){
 //         depth = Math.min(r,c);
 //         if(r>corner&&c>corner)
 //           continue;
 //       }
 //       //Q2
-//       if(r<Constants.ROWS/2&&c>=Constants.COLS/2){
-//         depth=Math.min(r,Constants.COLS-1-c);
-//          if(r>corner&&Constants.COLS-1-c>corner)
+//       if(r<Globals.ROWS/2&&c>=Globals.COLS/2){
+//         depth=Math.min(r,Globals.COLS-1-c);
+//          if(r>corner&&Globals.COLS-1-c>corner)
 //           continue;
 //       }
 //       //Q3
-//       if(r>=Constants.ROWS/2&&c<Constants.COLS/2){
-//         depth=Math.min(Constants.ROWS-1-r,c);
-//          if(Constants.ROWS-1-r>corner&&c>corner)
+//       if(r>=Globals.ROWS/2&&c<Globals.COLS/2){
+//         depth=Math.min(Globals.ROWS-1-r,c);
+//          if(Globals.ROWS-1-r>corner&&c>corner)
 //           continue;
 //       }
 //       //Q4
-//       if(r>=Constants.ROWS/2&&c>=Constants.COLS/2){        
-//         depth=Math.min(Constants.ROWS-1-r,Constants.COLS-1-c);
-//          if(Constants.ROWS-1-r>corner&&Constants.COLS-1-c>corner)
+//       if(r>=Globals.ROWS/2&&c>=Globals.COLS/2){        
+//         depth=Math.min(Globals.ROWS-1-r,Globals.COLS-1-c);
+//          if(Globals.ROWS-1-r>corner&&Globals.COLS-1-c>corner)
 //           continue;
 //       }
 //       t.split(depth);
@@ -165,18 +165,18 @@ void generate1(){
 
 
 String getFolderName(){
-  return Constants.ROWS+"x"+Constants.COLS+"_"+Constants.TILE_SIZE;
+  return Globals.ROWS+"x"+Globals.COLS+"_"+Globals.TILE_SIZE;
 }
 
 String getFileName(){
   DecimalFormat df2 = new DecimalFormat("#.##");
-  return "lev"+Constants.LEVELS+"_rate"+df2.format(Constants.SPLIT_RATE)+"_corner"+Constants.CORNER+"_indexes"+MyUtils.ArrayIntToString(Constants.TILES_INDEXES_VALID);
+  return "lev"+Globals.LEVELS+"_rate"+df2.format(Globals.SPLIT_RATE)+"_corner"+Globals.CORNER+"_indexes"+MyUtils.ArrayIntToString(Globals.TILES_INDEXES_VALID);
 }
 
 
 void calculateSize(){
-  mosaic_width = (int)((Constants.COLS-1)*(Constants.TILE_SIZE*(1-2.0*Constants.TILE_PADDING_RATIO))+Constants.TILE_SIZE);
-  mosaic_height = (int) ((Constants.ROWS-1)*(Constants.TILE_SIZE*(1-2.0*Constants.TILE_PADDING_RATIO))+Constants.TILE_SIZE);
+  mosaic_width = (int)((Globals.COLS-1)*(Globals.TILE_SIZE*(1-2.0*Globals.TILE_PADDING_RATIO))+Globals.TILE_SIZE);
+  mosaic_height = (int) ((Globals.ROWS-1)*(Globals.TILE_SIZE*(1-2.0*Globals.TILE_PADDING_RATIO))+Globals.TILE_SIZE);
   window_width=mosaic_width+PADDING*2;
   window_height=mosaic_height+PADDING*2;
   println("window: "+window_width+" x "+window_height);
@@ -186,13 +186,13 @@ void calculateSize(){
 
 void settings(){
   calculateSize();
-  smooth(Constants.SMOOTH);  
+  smooth(Globals.SMOOTH);  
 }
 
 void setup() {
   TileProviderSingleton.init(this);
   MyUtils.init(this);
-  Constants.init(this);
+  Globals.init(this);
 }
 void draw() {
   translate(PADDING,PADDING);  

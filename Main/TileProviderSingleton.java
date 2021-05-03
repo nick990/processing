@@ -52,9 +52,9 @@ public class TileProviderSingleton{
   }
 
   public int getRandomIndex(){
-    if(Constants.TILES_INDEXES_VALID.size()==0)
+    if(Globals.TILES_INDEXES_VALID.size()==0)
       return new Random().nextInt(images.size());
-    return Constants.TILES_INDEXES_VALID.get(new Random().nextInt(Constants.TILES_INDEXES_VALID.size()));
+    return Globals.TILES_INDEXES_VALID.get(new Random().nextInt(Globals.TILES_INDEXES_VALID.size()));
   }
 
   //Genera il subset di indici di dimensione size
@@ -63,10 +63,10 @@ public class TileProviderSingleton{
     if(size<0)
       size = new Random().nextInt(MAX_TILES_INDEX)+1;
     initTilesIndexes();
-    Constants.TILES_INDEXES_VALID=new ArrayList<Integer>();
+    Globals.TILES_INDEXES_VALID=new ArrayList<Integer>();
     while((size)>0){
       int i = new Random().nextInt(TILES_INDEXES.size());
-      Constants.TILES_INDEXES_VALID.add(TILES_INDEXES.get(i));
+      Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(i));
       TILES_INDEXES.remove(i);
       size--;
     }
