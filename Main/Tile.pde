@@ -45,7 +45,7 @@ class Tile{
   }
 
   void draw(){
-    if(this.layer>1)
+    if(this.bgImage!=null && this.layer>Globals.LAYER_COLOR_TH)
       tint(this.bgImageColor);
     else
       tint(this.bgColor);

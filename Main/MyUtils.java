@@ -111,4 +111,9 @@ public class MyUtils{
         // app.println(Math.abs(sum1-sum2));
         return Math.abs(sum1-sum2);
     }
+
+    public static String getFileName(){
+        return Globals.ROWS+"x"+Globals.COLS+"_tsize"+Globals.TILE_SIZE+"_th"+Globals.SPLIT_THRESHOLD+"_mintsize"+Globals.MIN_TILE_SIZE+"_indexes"+MyUtils.ArrayIntToString(Globals.TILES_INDEXES_VALID)+".jpg";
+      };
+      
 }

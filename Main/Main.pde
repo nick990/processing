@@ -6,39 +6,6 @@ int mosaic_width;
 int mosaic_height;
 int window_width;
 int window_height;
-ArrayList<Tile> firstLevel;
-ArrayList<Tile> flattenTree;
-
-public  ArrayList<Tile> getFlattenTree(ArrayList<Tile> firstLevel){
-    ArrayList<Tile> flattenTree = new ArrayList<Tile>(); 
-    for(Tile t:firstLevel)
-      flattenTree.addAll(t.getFlattenTree());
-    return flattenTree;
-}
-
-public void reorderFlattenTree(ArrayList<Tile> tiles){
-    for(int i=0;i<tiles.size();i++){
-      for(int j=i+1;j<tiles.size();j++){
-                  Tile t_i = tiles.get(i);
-                  Tile t_j = tiles.get(j);                
-                  if(t_i.layer>t_j.layer){
-                      Tile aux=t_i.clone();
-                      tiles.set(i,t_j);
-                      tiles.set(j,aux);
-                  }
-        }
-    }
-}
-
-public ArrayList<Tile> makeHoles(ArrayList<Tile> tiles){
-  ArrayList<Tile> aux = new ArrayList<Tile>();
-  for(Tile t:tiles){
-    if(new Random().nextDouble()<0.7){
-      aux.add(t);
-    }
-  }
-  return aux;
-}
 
 // Cambia le constanti globali per randomizzare la generazione
 void randomize(){
@@ -54,9 +21,8 @@ void randomize(){
 
 // Genera un nuovo albero
 // Al termine ho flattenTree ordinato e pronto per essere disegnato
-void generate1(){  
-  println(getFileName());
-  firstLevel = new ArrayList<Tile>();
+public ArrayList<Tile> generate(){  
+  ArrayList<Tile> firstLevel = new ArrayList<Tile>();
   for(int r=0;r<Globals.ROWS;r++){
     for(int c=0;c<Globals.COLS;c++){ 
       int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
@@ -64,7 +30,7 @@ void generate1(){
       firstLevel.add(new Tile(r,c,imageIndex,negative,0,0,0,null));
     }
   }
-  flattenTree = getFlattenTree(firstLevel);
+  ArrayList<Tile> flattenTree = getFlattenTree(firstLevel);
 
   // Splitto tutti fino al massimo livello
   // for(Tile t:firstLevel){
@@ -79,8 +45,9 @@ void generate1(){
         t.split(1);
     }
     flattenTree = getFlattenTree(flattenTree);
-    reorderFlattenTree(flattenTree);
+    sortFlattenTree(flattenTree);
   }
+  return flattenTree;
 }
 //spliita con le colonne
 // void generate2(){  
@@ -163,29 +130,14 @@ void generate1(){
 // }
 
 
-
-String getFolderName(){
-  return Globals.ROWS+"x"+Globals.COLS+"_"+Globals.TILE_SIZE;
-}
-
-String getFileName(){
-  DecimalFormat df2 = new DecimalFormat("#.##");
-  return "lev"+Globals.LEVELS+"_rate"+df2.format(Globals.SPLIT_RATE)+"_corner"+Globals.CORNER+"_indexes"+MyUtils.ArrayIntToString(Globals.TILES_INDEXES_VALID);
-}
-
-
-void calculateSize(){
-  mosaic_width = (int)((Globals.COLS-1)*(Globals.TILE_SIZE*(1-2.0*Globals.TILE_PADDING_RATIO))+Globals.TILE_SIZE);
-  mosaic_height = (int) ((Globals.ROWS-1)*(Globals.TILE_SIZE*(1-2.0*Globals.TILE_PADDING_RATIO))+Globals.TILE_SIZE);
-  window_width=mosaic_width+PADDING*2;
-  window_height=mosaic_height+PADDING*2;
+void settings(){
+  int mosaic_width = (int)((Globals.COLS-1)*(Globals.TILE_SIZE*(1-2.0*Globals.TILE_PADDING_RATIO))+Globals.TILE_SIZE);
+  int mosaic_height = (int) ((Globals.ROWS-1)*(Globals.TILE_SIZE*(1-2.0*Globals.TILE_PADDING_RATIO))+Globals.TILE_SIZE);
+  int window_width=mosaic_width+PADDING*2;
+  int window_height=mosaic_height+PADDING*2;
   println("window: "+window_width+" x "+window_height);
   println("mosaic: "+mosaic_width+" x "+mosaic_height);
   setSize(window_width,window_height);
-}
-
-void settings(){
-  calculateSize();
   smooth(Globals.SMOOTH);  
 }
 
@@ -195,20 +147,22 @@ void setup() {
   Globals.init(this);
 }
 void draw() {
-  translate(PADDING,PADDING);  
-  // for(int i=0;i<20;i++){
-  //   println(i+")");
-    // randomize();
-    generate1();
     background(255);
-    int count=1;
-    for(Tile t : flattenTree){
-      // if(count%100==0)
-      println((count++)+"/"+flattenTree.size());
-      t.drawTree(); 
-    }
-    save("out/"+getFolderName()+"_"+getFileName()+".jpg");
-    println("saved");
-    exit();
-  }
+    translate(PADDING,PADDING); 
+    for(int step=0;step<20;step++){
+        randomize();
+        println(step+" "+MyUtils.getFileName());
+        ArrayList<Tile> tree = generate();
+        for(int i=0;i<tree.size();i++){
+            Tile t = tree.get(i);
+            if(i%100==0)
+                println((i+1)+"/"+tree.size());
+            t.drawTree();
+        }
+        println("saving...");
+        save("out/"+step+"_"+MyUtils.getFileName());
+        println("saved");
+    }  
+  exit();
+}
 

@@ -9,7 +9,7 @@ public class Globals{
         Globals.TILES_INDEXES_VALID=new ArrayList<Integer>();
     }
     public static double TILE_PADDING_RATIO=1.0/5.0;
-    public static int TILE_SIZE=500;
+    public static int TILE_SIZE=200;
     public static int COLS=5;
     public static int ROWS=5;
     public static int CORNER=3;
@@ -19,7 +19,8 @@ public class Globals{
     public static int SMOOTH=8;
     public static int WIDTH=200;
     public static int HEIGHT=200;
-    public static int SPLIT_THRESHOLD=40;
+    public static int SPLIT_THRESHOLD=80;
     public static int MIN_TILE_SIZE=20;
+    public static int LAYER_COLOR_TH=1;
 
 }
