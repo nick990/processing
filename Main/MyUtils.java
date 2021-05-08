@@ -21,8 +21,8 @@ public class MyUtils{
         return app.color(red, green, 255/2);
     }
     public static int getColorFromPositionInWindow(int x,int y){
-        double xComponent = (double)x/((double)app.width*0.7);
-        double yComponent = y/((double)app.height*0.7);
+        double xComponent = (double)x/((double)app.width*Globals.COLOR_FACTOR);
+        double yComponent = y/((double)app.height*Globals.COLOR_FACTOR);
         int red = (int)(yComponent*255);
         int  green = (int)(xComponent*255);
         return app.color(red, green, Globals.BLUE);
@@ -113,7 +113,8 @@ public class MyUtils{
     }
 
     public static String getFileName(){
-        return Globals.ROWS+"x"+Globals.COLS+"_tsize"+Globals.TILE_SIZE+"_th"+Globals.SPLIT_THRESHOLD+"_mintsize"+Globals.MIN_TILE_SIZE+"_indexes"+MyUtils.ArrayIntToString(Globals.TILES_INDEXES_VALID)+".jpg";
+        String datetime = app.year()+"-"+app.month()+"-"+app.day()+"-"+app.hour()+"-"+app.minute()+"-"+app.second(); 
+        return datetime+"_"+Globals.ROWS+"x"+Globals.COLS+"_lv"+Globals.LEVELS+"_tsize"+Globals.TILE_SIZE+"_rate"+Globals.SPLIT_RATE+"_color"+Globals.COLOR_FACTOR+"_indexes"+MyUtils.ArrayIntToString(Globals.TILES_INDEXES_VALID);
       };
       
 }

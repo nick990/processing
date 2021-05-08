@@ -44,22 +44,48 @@ class Tile{
     this.bgColor=MyUtils.getColorFromPositionInWindow(x+size/2,y+size/2);
   }
 
-  void draw(){
-    if(this.bgImage!=null && this.layer>Globals.LAYER_COLOR_TH)
-      tint(this.bgImageColor);
-    else
-      tint(this.bgColor);
+  void draw(boolean tint,VideoExport video){
+    if(tint){
+      if(this.bgImage!=null && this.layer>Globals.LAYER_COLOR_TH)
+        tint(this.bgImageColor);
+      else
+        tint(this.bgColor);
+    }
     image(this.image,x,y,this.size,this.size);
+    if(video != null){
+      if(this.layer==1)
+        pauseVideo(video,20);
+      else if(this.layer==2)
+        pauseVideo(video,10);
+      else if(this.layer==3)
+        pauseVideo(video,5);
+      else if(new Random().nextDouble()>0.4)
+        pauseVideo(video,1);
+    }
+  }
+  
+  void draw(boolean tint){
+    draw(tint, null);
   }
 
-  void drawTree(){
+  void draw(){
+    draw(true);
+  }
+
+  void drawTree(boolean tint,VideoExport video){
     if(this.children.size()>0){
       for(Tile c : children){
-        c.drawTree();
+        c.drawTree(tint,video);
       }
     }else{
-      this.draw();
+      this.draw(tint,video);
     }
+  }
+  void drawTree(boolean tint){
+    drawTree(tint,null);
+  }
+  void drawTree(){
+    drawTree(true);
   }
 
   void split(int depth){
@@ -110,22 +136,49 @@ class Tile{
 
 
 
-  ArrayList<Tile> getFlattenTree(){
+  /*
+  * Ritorna il flatten tree della tile
+  * Complete significa che mantiene tutti i livelli, altrimenti solo l'ultimo
+   */
+  ArrayList<Tile> getFlattenTree(boolean complete){
     ArrayList<Tile> tree=new ArrayList<Tile>();
-    if(this.children.size()==0){
+    if(complete){
       tree.add(this.clone());
-    }else{
       for( Tile t : this.children){
-        tree.addAll(t.getFlattenTree());
+        tree.addAll(t.getFlattenTree(true));
+      }
+    }else{
+      if(this.children.size()==0){
+        tree.add(this.clone());
+      }else{
+        for( Tile t : this.children){
+          tree.addAll(t.getFlattenTree());
+        }
       }
     }
     return tree;
+  }
+
+  ArrayList<Tile> getFlattenTree(){
+    return getFlattenTree(false);
   }
 
   /*
    * Clona senza figli
    */
   Tile clone(){
-  return new Tile(r,c,tileImageIndex,negative,layer,offsetX,offsetY,this.bgImage);
+    return new Tile(r,c,tileImageIndex,negative,layer,offsetX,offsetY,this.bgImage);
+  }
+
+  /*
+   * Clona senza figli e cambiando l'immagine Tile
+   */
+  Tile cloneWithRandomTile(){
+    int newTileImageIndex=this.tileImageIndex;
+    if(Globals.TILES_INDEXES_VALID.size()>1){
+      while(newTileImageIndex==this.tileImageIndex)
+        newTileImageIndex = TileProviderSingleton.getInstance().getRandomIndex();
+    }
+    return new Tile(r,c,newTileImageIndex,negative,layer,offsetX,offsetY,this.bgImage);
   }
 }
