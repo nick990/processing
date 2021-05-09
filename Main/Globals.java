@@ -12,7 +12,7 @@ public class Globals{
         // Globals.TILES_INDEXES_VALID.add(2);
     }
     public static double TILE_PADDING_RATIO=1.0/5.0;
-    public static int TILE_SIZE=800;
+    public static int TILE_SIZE=400;
     public static int COLS=10;
     public static int ROWS=10;
     public static int CORNER=3;
@@ -22,7 +22,7 @@ public class Globals{
     public static int SMOOTH=8;
     public static int WIDTH=200;
     public static int HEIGHT=200;
-    public static int SPLIT_THRESHOLD=80;
+    public static int SPLIT_THRESHOLD=25;
     public static int MIN_TILE_SIZE=20;
     public static int LAYER_COLOR_TH=1;
     public static int FRAME_RATE=60;

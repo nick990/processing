@@ -46,12 +46,19 @@ class Tile{
 
   void draw(boolean tint,VideoExport video){
     if(tint){
-      if(this.bgImage!=null && this.layer>Globals.LAYER_COLOR_TH)
-        tint(this.bgImageColor);
+      if(this.bgImage!=null){
+        if(this.layer>=Globals.LAYER_COLOR_TH)
+          tint(this.bgImageColor);
+        else{
+         this.bgImage.filter(GRAY); 
+         tint(MyUtils.getAvgColor(this.bgImage));
+        }
+      }
       else
         tint(this.bgColor);
     }
     image(this.image,x,y,this.size,this.size);
+    noTint();
     if(video != null){
       if(this.layer==1)
         pauseVideo(video,20);
@@ -113,7 +120,9 @@ class Tile{
   boolean needSplit(){
     if(this.bgImage==null)
       return false;
-    if(this.size<2*Globals.MIN_TILE_SIZE)
+    // if(this.size<2*Globals.MIN_TILE_SIZE)
+    //   return false;
+    if(this.layer >= Globals.LEVELS-1)
       return false;
     int[][] colors = MyUtils.getAvgColorGrid(this.bgImage,2,2);
     for(int r=0;r<2;r++){

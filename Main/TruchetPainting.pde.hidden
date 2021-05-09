@@ -1,10 +1,12 @@
+import com.hamoid.*;
+
 import java.util.Random;
 import java.text.DecimalFormat;
 
 int PADDING = Globals.TILE_SIZE/2;
 
 void randomize(){
-  //TileProviderSingleton.getInstance().generateRandomIndexes(size);
+  TileProviderSingleton.getInstance().generateRandomIndexes(-1);
   // Globals.SPLIT_THRESHOLD=new Random().nextInt(70)+20;
 }
 
@@ -23,14 +25,15 @@ public ArrayList<Tile> generate(){
       tree.add(t);
     }
   }
-  ArrayList<Tile> flattenTree = getFlattenTree(tree);
-  sortFlattenTree(flattenTree);
-  return flattenTree;
+  // ArrayList<Tile> flattenTree = getFlattenTree(tree);
+  // sortFlattenTree(flattenTree);
+  // return flattenTree;
+  return tree;
 }
 
 void settings(){
-  img = loadImage("images/ermellino.jpeg");
-  img.filter(GRAY);
+  img = loadImage("images/ragazza.jpg");
+  // img.filter(GRAY);
   double imgRatio = (double)img.width/(double)img.height;
   Globals.ROWS = (int)(Globals.COLS/imgRatio);
   int treeWidth = (int)((Globals.COLS-1)*(Globals.TILE_SIZE*(1-2.0*Globals.TILE_PADDING_RATIO))+Globals.TILE_SIZE);
@@ -47,21 +50,27 @@ void setup() {
   imagesGrid = MyUtils.getSubimagesGrid(img,Globals.ROWS,Globals.COLS);
   Globals.init(this);
 }
+
 void draw() {
     background(255);
     translate(PADDING,PADDING); 
     for(int step=0;step<20;step++){
+      println("----- "+step+" -----");
         randomize();
-        println(step+" "+MyUtils.getFileName());
+        println(getFileName());
         ArrayList<Tile> tree = generate();
-        for(int i=0;i<tree.size();i++){
-            Tile t = tree.get(i);
+        ArrayList<Tile> flatten = getFlattenTree(tree);
+        sortFlattenTreeByY(flatten,true);
+        sortFlattenTreeByX(flatten,true);
+        sortFlattenTree(flatten);
+         for(int i=0;i<flatten.size();i++){
+            Tile t = flatten.get(i);
             if(i%100==0)
-                println((i+1)+"/"+tree.size());
-            t.drawTree();
+                println((i+1)+"/"+flatten.size());
+            t.draw(true);
         }
         println("saving...");
-        save("out/"+step+"_"+MyUtils.getFileName());
+        save("out/"+getFileName()+".jpg");
         println("saved");
     }  
   exit();
