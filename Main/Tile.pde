@@ -41,7 +41,7 @@ class Tile{
     this.bgImage = bgImage;
     if(this.bgImage != null)
       this.bgImageColor=MyUtils.getAvgColor(this.bgImage);
-    this.bgColor=MyUtils.getColorFromPositionInWindow(x+size/2,y+size/2);
+    this.bgColor=getColorFromPositionInMosaic(x+size/2,y+size/2);
   }
 
   void draw(boolean tint,VideoExport video){

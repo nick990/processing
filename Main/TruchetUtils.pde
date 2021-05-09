@@ -29,6 +29,7 @@ public void sortFlattenTree(ArrayList<Tile> tiles){
                 }
       }
   }
+
 }
 
 public void sortFlattenTreeByX(ArrayList<Tile> tiles, boolean asc){
@@ -140,14 +141,15 @@ public void drawLevel(ArrayList<Tile> tree,int layer,boolean tint,VideoExport vi
     if(t.layer==layer)
       t.draw(tint,video);
   }
-  // ArrayList<Tile> subTree = extractLevel(tree,layer);
-  //  Collections.shuffle(subTree);
-  //   for(int i=0;i<subTree.size();i++){
-  //     if(i%100==0)
-  //       println(i+"/"+subTree.size());
-  //     Tile t = subTree.get(i);
-  //     t.draw(tint,video);
-  //   }
-  
 }
+
+  public int getColorFromPositionInMosaic(int x,int y){
+    int xPadding = (width-Globals.mosaic_width)/2;
+    double xComponent = (double)(x-xPadding)/((double)(width-xPadding)*Globals.COLOR_FACTOR);
+    int yPadding = (height-Globals.mosaic_height)/2;
+    double yComponent = (double)(y-yPadding)/((double)(height-yPadding)*Globals.COLOR_FACTOR);
+    int red = (int)(yComponent*255);
+    int  green = (int)(xComponent*255);
+    return color(red, green, Globals.BLUE);
+  }
 
