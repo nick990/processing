@@ -7,7 +7,6 @@ int PADDING = Globals.TILE_SIZE/2;
 
 void randomize(){
   TileProviderSingleton.getInstance().generateRandomIndexes(-1);
-  // Globals.SPLIT_THRESHOLD=new Random().nextInt(70)+20;
 }
 
 PImage img;
@@ -54,24 +53,25 @@ void setup() {
 void draw() {
     background(255);
     translate(PADDING,PADDING); 
-    for(int step=0;step<20;step++){
+    for(int step=0;step<3;step++){
       println("----- "+step+" -----");
+        String fileName = getDatetime()+"-"+step;
+        println(fileName);
         randomize();
-        println(getFileName());
-        ArrayList<Tile> tree = generate();
-        ArrayList<Tile> flatten = getFlattenTree(tree);
-        sortFlattenTreeByY(flatten,true);
-        sortFlattenTreeByX(flatten,true);
-        sortFlattenTree(flatten);
-         for(int i=0;i<flatten.size();i++){
-            Tile t = flatten.get(i);
-            if(i%100==0)
-                println((i+1)+"/"+flatten.size());
-            t.draw(true);
-        }
-        println("saving...");
-        save("out/"+getFileName()+".jpg");
-        println("saved");
+        // ArrayList<Tile> tree = generate();
+        // ArrayList<Tile> flatten = getFlattenTree(tree);
+        // sortFlattenTreeByY(flatten,true);
+        // sortFlattenTreeByX(flatten,true);
+        // sortFlattenTree(flatten);
+        //  for(int i=0;i<flatten.size();i++){
+        //     Tile t = flatten.get(i);
+        //     if(i%100==0)
+        //         println((i+1)+"/"+flatten.size());
+            //t.draw(true);
+        // }
+        save("out/"+fileName+".jpg");
+        saveGlobals("out/"+fileName+".txt");
+        println("-------------");
     }  
   exit();
 }

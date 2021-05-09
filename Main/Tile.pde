@@ -120,8 +120,6 @@ class Tile{
   boolean needSplit(){
     if(this.bgImage==null)
       return false;
-    // if(this.size<2*Globals.MIN_TILE_SIZE)
-    //   return false;
     if(this.layer >= Globals.LEVELS-1)
       return false;
     int[][] colors = MyUtils.getAvgColorGrid(this.bgImage,2,2);

@@ -23,7 +23,6 @@ public class Globals{
     public static int WIDTH=200;
     public static int HEIGHT=200;
     public static int SPLIT_THRESHOLD=25;
-    public static int MIN_TILE_SIZE=20;
     public static int LAYER_COLOR_TH=1;
     public static int FRAME_RATE=60;
     public static double CHANGE_TILE_RATE=0.2;

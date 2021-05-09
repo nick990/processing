@@ -21,13 +21,7 @@ public class MyUtils{
         return app.color(red, green, 255/2);
     }
 
-    public static String ArrayIntToString(ArrayList<Integer> list){
-        String s="";
-        for(int i:list){
-            s+=i+",";
-        }
-        return s;
-    }
+
     public static int[][] getAvgColorGrid(PImage img, int rows, int cols){
         int[][] grid = new int[rows][cols];
         int cellW=img.width/cols;
