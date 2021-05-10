@@ -31,7 +31,7 @@ public ArrayList<Tile> generate(){
 }
 
 void settings(){
-  img = loadImage("images/ragazza.jpg");
+  img = loadImage("images/adam_white.jpg");
   // img.filter(GRAY);
   double imgRatio = (double)img.width/(double)img.height;
   Globals.ROWS = (int)(Globals.COLS/imgRatio);
@@ -53,22 +53,22 @@ void setup() {
 void draw() {
     background(255);
     translate(PADDING,PADDING); 
-    for(int step=0;step<3;step++){
+    for(int step=0;step<20;step++){
       println("----- "+step+" -----");
         String fileName = getDatetime()+"-"+step;
         println(fileName);
         randomize();
-        // ArrayList<Tile> tree = generate();
-        // ArrayList<Tile> flatten = getFlattenTree(tree);
-        // sortFlattenTreeByY(flatten,true);
-        // sortFlattenTreeByX(flatten,true);
-        // sortFlattenTree(flatten);
-        //  for(int i=0;i<flatten.size();i++){
-        //     Tile t = flatten.get(i);
-        //     if(i%100==0)
-        //         println((i+1)+"/"+flatten.size());
-            //t.draw(true);
-        // }
+        ArrayList<Tile> tree = generate();
+        ArrayList<Tile> flatten = getFlattenTree(tree);
+        sortFlattenTreeByY(flatten,true);
+        sortFlattenTreeByX(flatten,true);
+        sortFlattenTree(flatten);
+         for(int i=0;i<flatten.size();i++){
+            Tile t = flatten.get(i);
+            if(i%100==0)
+                println((i+1)+"/"+flatten.size());
+            t.draw(true);
+        }
         save("out/"+fileName+".jpg");
         saveGlobals("out/"+fileName+".txt");
         println("-------------");
