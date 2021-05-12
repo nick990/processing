@@ -19,9 +19,10 @@
 
     public String ArrayIntToString(ArrayList<Integer> list){
         String s="";
-        for(int i:list){
-            s+=i+",";
-        }
+        if(list!=null)
+            for(int i:list){
+                s+=i+",";
+            }
         return s;
     }
 
@@ -39,6 +40,8 @@
         globalsAsStringList.add("FRAME_RATE="+Globals.FRAME_RATE);
         globalsAsStringList.add("COLOR_FACTOR="+nf((float)Globals.COLOR_FACTOR,1,2));
         globalsAsStringList.add("TILES_INDEXES_VALID="+ArrayIntToString(Globals.TILES_INDEXES_VALID));
+        globalsAsStringList.add("STROKE_WEIGHT="+Globals.STROKE_WEIGHT);
+        globalsAsStringList.add("DIAMETER="+Globals.DIAMETER);
 
         String[] globalsAsStringArray = new String[globalsAsStringList.size()];
         globalsAsStringArray = globalsAsStringList.toArray(globalsAsStringArray);
