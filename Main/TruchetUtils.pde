@@ -152,4 +152,3 @@ public void drawLevel(ArrayList<Tile> tree,int layer,boolean tint,VideoExport vi
     int  green = (int)(xComponent*255);
     return color(red, green, Globals.BLUE);
   }
-

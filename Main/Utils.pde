@@ -47,4 +47,3 @@
         globalsAsStringArray = globalsAsStringList.toArray(globalsAsStringArray);
         saveStrings(fileName, globalsAsStringArray);
     }
-
