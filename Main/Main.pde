@@ -36,7 +36,7 @@ void setup(){
 }
 
 void draw() {
-  background(255);
+  background(0);
   // image(bg,0,0, width, height);
   translate(width/2,height/2);
   // beginShape();
@@ -47,7 +47,7 @@ void draw() {
     float m=10;
     // float n1=2+sin(t)*0.3;
     float n1=1;
-    float n2=2;
+    float n2=cos(t)*2;
     float n3=-2;
     float rad = r(theta,a,b,m,n1,n2,n3);
     float x = rad * cos(theta)*width/4;
@@ -58,6 +58,8 @@ void draw() {
     int col = getColorFromPositionInWindow((int)(x),(int)(y));
     stroke(col);
     noFill();
+    // noStroke();
+    // fill(col);
     ellipse(x, y, radius, radius);
   }
   pauseVideo(videoExport, 1);
