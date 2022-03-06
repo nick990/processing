@@ -13,21 +13,21 @@ public class Globals{
     }
     public static double TILE_PADDING_RATIO=1.0/5.0;
     public static int TILE_SIZE=400;
-    public static int COLS=16;
-    public static int ROWS=10;
-    public static int CORNER=2;
+    public static int COLS=1;
+    public static int ROWS=1;
+    public static int CORNER=1;
     public static int LEVELS=4;
     public static double SPLIT_RATE = 0.5;
     public static int SMOOTH=8;
-    public static int WIDTH=1500;
-    public static int HEIGHT=1500;
+    public static int WIDTH=2000;
+    public static int HEIGHT=2000;
     public static int SPLIT_THRESHOLD=25;
     public static int LAYER_COLOR_TH=0;
     public static int FRAME_RATE=30;
     public static double CHANGE_TILE_RATE=0.2;
     public static int CHANGE_TILE_NUM=1;
-    public static double COLOR_FACTOR=0.3;
-    public static int BLUE=100;
+    public static double COLOR_FACTOR=1.0;
+    public static int BLUE=127;
     public static int mosaic_width;
     public static int mosaic_height;
 
