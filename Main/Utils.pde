@@ -47,3 +47,15 @@
         globalsAsStringArray = globalsAsStringList.toArray(globalsAsStringArray);
         saveStrings(fileName, globalsAsStringArray);
     }
+
+       public String getFileName(){
+        String datetime = year()+"-"+month()+"-"+day()+"-"+hour()+"-"+minute()+"-"+second(); 
+        return datetime+
+            "_"+Globals.ROWS+"x"+Globals.COLS+
+            "_lv"+Globals.LEVELS+
+            "_tsize"+Globals.TILE_SIZE+
+            "_splitth"+Globals.SPLIT_THRESHOLD+
+            "_rate"+nf((float)Globals.SPLIT_RATE,1,2)+
+            "_color"+nf((float)Globals.COLOR_FACTOR,1,2)+
+            "_indexes"+ArrayIntToString(Globals.TILES_INDEXES_VALID);
+      }

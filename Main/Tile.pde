@@ -46,12 +46,15 @@ class Tile{
 
   void draw(boolean tint,VideoExport video){
     if(tint){
-      if(this.bgImage!=null){
-        if(this.layer>=Globals.LAYER_COLOR_TH)
-          tint(this.bgImageColor);
+      if(this.bgImage!=null ){
+        if(this.layer>=Globals.LAYER_COLOR_TH){
+          tint(this.bgImageColor);          
+          //tint(getColorFromPositionInWindow(x,y));
+        }
         else{
          this.bgImage.filter(GRAY); 
          tint(MyUtils.getAvgColor(this.bgImage));
+        // tint(this.bgColor);
         }
       }
       else
