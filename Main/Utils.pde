@@ -42,7 +42,7 @@
         globalsAsStringList.add("TILES_INDEXES_VALID="+ArrayIntToString(Globals.TILES_INDEXES_VALID));
         globalsAsStringList.add("STROKE_WEIGHT="+Globals.STROKE_WEIGHT);
         globalsAsStringList.add("DIAMETER="+Globals.DIAMETER);
-        globalsAsStringArray.add("PADDING="+Globals.PADDING);
+        globalsAsStringList.add("PADDING="+Globals.PADDING);
 
         String[] globalsAsStringArray = new String[globalsAsStringList.size()];
         globalsAsStringArray = globalsAsStringList.toArray(globalsAsStringArray);
