@@ -32,7 +32,7 @@ public ArrayList<Tile> generate(){
 
 void settings(){
   //img = loadImage("images/araba_square.png");
-  img = loadImage("images/dama_white_square.png");
+  img = loadImage("images/liberty_square.png");
   // img.filter(GRAY);
   double imgRatio = (double)img.width/(double)img.height;
   Globals.ROWS = (int)(Globals.COLS/imgRatio);
@@ -55,11 +55,12 @@ void draw() {
     background(0);
     translate(Globals.PADDING,Globals.PADDING);
   
-    for(int step=0;step<20;step++){
+    for(int step=1;step<7;step++){
+      Globals.LEVELS=step;
       println("----- "+step+" -----");
         String fileName =getFileName()+"-"+step;
         println(fileName);
-        randomize();
+        //randomize();
         ArrayList<Tile> tree = generate();
         ArrayList<Tile> flatten = getFlattenTree(tree);
         sortFlattenTreeByY(flatten,true);
