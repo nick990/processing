@@ -138,14 +138,15 @@ void setup() {
 }
 void draw() {
     background(0);
-    translate(PADDING,PADDING); 
-     for(int j=0;j<100;j++){
+    translate(PADDING,PADDING);
+  
+     for(int j=0;j<19;j++){
         println("-----"+j+"-----");
         randomize();
         //  Globals.TILES_INDEXES_VALID=new ArrayList<Integer>();
         // Globals.TILES_INDEXES_VALID.add(j);
         println(getFileName());
-        ArrayList<Tile> tree = generate4();
+        ArrayList<Tile> tree = generate();
         ArrayList<Tile> flatten = getFlattenTree(tree);
         sortFlattenTreeByY(flatten,true);
         sortFlattenTreeByX(flatten,true);
@@ -158,6 +159,7 @@ void draw() {
         }
         save("out/gen4/"+getFileName()+".jpg");
         println("saved");
-     }  
+     } 
+     
   exit();
 }

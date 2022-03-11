@@ -3,6 +3,8 @@ import com.hamoid.*;
 import java.util.Random;
 import java.text.DecimalFormat;
 
+
+
 void randomize(){
   TileProviderSingleton.getInstance().generateRandomIndexes(-1);
 }
@@ -29,7 +31,8 @@ public ArrayList<Tile> generate(){
 }
 
 void settings(){
-  img = loadImage("images/liberty_square.png");
+  //img = loadImage("images/araba_square.png");
+  img = loadImage("images/dama_white_square.png");
   // img.filter(GRAY);
   double imgRatio = (double)img.width/(double)img.height;
   Globals.ROWS = (int)(Globals.COLS/imgRatio);
@@ -50,10 +53,11 @@ void setup() {
 
 void draw() {
     background(0);
-    translate(Globals.PADDING,Globals.PADDING); 
+    translate(Globals.PADDING,Globals.PADDING);
+  
     for(int step=0;step<20;step++){
       println("----- "+step+" -----");
-        String fileName = getDatetime()+"-"+step;
+        String fileName =getFileName()+"-"+step;
         println(fileName);
         randomize();
         ArrayList<Tile> tree = generate();
@@ -70,6 +74,7 @@ void draw() {
         save("out/"+fileName+".jpg");
         saveGlobals("out/"+fileName+".txt");
         println("-------------");
-    }  
+      
+    }
   exit();
 }
