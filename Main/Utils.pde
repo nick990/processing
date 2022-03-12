@@ -45,6 +45,8 @@
         globalsAsStringList.add("BICOLOR="+Globals.BICOLOR);
         globalsAsStringList.add("COLOR1="+hex(Globals.COLOR1));
         globalsAsStringList.add("COLOR2="+hex(Globals.COLOR2));
+        globalsAsStringList.add("ALPHA="+Globals.ALPHA);
+        globalsAsStringList.add("STARTING_NEGATIVE="+Globals.STARTING_NEGATIVE);
 
         String[] globalsAsStringArray = new String[globalsAsStringList.size()];
         globalsAsStringArray = globalsAsStringList.toArray(globalsAsStringArray);

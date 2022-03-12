@@ -54,6 +54,17 @@ public void sortFlattenTreeByX(ArrayList<Tile> tiles, boolean asc){
   }
 }
 
+public ArrayList<Tile> extractTreeByLayer(ArrayList<Tile> tiles, int layer){
+  ArrayList<Tile> newTree = new ArrayList<Tile>();
+  for (int i=0;i<tiles.size();i++) {
+    Tile t = tiles.get(i);
+    if(t.layer == layer){
+      newTree.add(t);
+    }
+  }
+  return newTree;
+}
+
 public void sortFlattenTreeByY(ArrayList<Tile> tiles, boolean asc){
   for(int i=0;i<tiles.size();i++){
     for(int j=i+1;j<tiles.size();j++){

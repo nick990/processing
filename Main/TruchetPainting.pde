@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 
 
 void randomize(){
-  TileProviderSingleton.getInstance().generateRandomIndexes(-1);
+ // TileProviderSingleton.getInstance().generateRandomIndexes(-1);
 }
 
 PImage img;
@@ -18,7 +18,7 @@ public ArrayList<Tile> generate(){
     for(int c=0;c<Globals.COLS;c++){
       PImage bgImage = imagesGrid[r][c];
       int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
-      boolean negative=false;
+      boolean negative=Globals.STARTING_NEGATIVE;
       Tile t = new Tile(r,c,imageIndex,negative,0,0,0,bgImage);
       t.generateSubTree();
       tree.add(t);
@@ -31,8 +31,7 @@ public ArrayList<Tile> generate(){
 }
 
 void settings(){
-  //img = loadImage("images/araba_square.png");
-  img = loadImage("images/liberty_square.png");
+  img = loadImage("images/starry.jpg");
   // img.filter(GRAY);
   double imgRatio = (double)img.width/(double)img.height;
   Globals.ROWS = (int)(Globals.COLS/imgRatio);
@@ -41,7 +40,8 @@ void settings(){
   Globals.WIDTH=treeWidth+Globals.PADDING*2;
   Globals.HEIGHT=treeHeigth+Globals.PADDING*2;
   setSize(Globals.WIDTH, Globals.HEIGHT);
-  smooth(Globals.SMOOTH);  
+  smooth(Globals.SMOOTH);
+  println("window: "+ Globals.WIDTH+" x "+Globals.HEIGHT);
 }
 
 void setup() {
@@ -52,15 +52,14 @@ void setup() {
 }
 
 void draw() {
-    background(0);
+   
     translate(Globals.PADDING,Globals.PADDING);
-  
-    for(int step=1;step<7;step++){
-      Globals.LEVELS=step;
+    for(int step=1;step<=20;step++){
+       background(255);
       println("----- "+step+" -----");
         String fileName =getFileName()+"-"+step;
         println(fileName);
-        //randomize();
+        randomize();
         ArrayList<Tile> tree = generate();
         ArrayList<Tile> flatten = getFlattenTree(tree);
         sortFlattenTreeByY(flatten,true);

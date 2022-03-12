@@ -48,7 +48,7 @@ class Tile{
     if(tint){
       if(this.bgImage!=null ){
         if(this.layer>=Globals.LAYER_COLOR_TH){
-          tint(this.bgImageColor);          
+          tint(this.bgImageColor,Globals.ALPHA);          
           //tint(getColorFromPositionInWindow(x,y));
         }
         else{
@@ -128,7 +128,7 @@ class Tile{
     int[][] colors = MyUtils.getAvgColorGrid(this.bgImage,2,2);
     for(int r=0;r<2;r++){
       for(int c=0;c<2;c++){
-        if(MyUtils.colorDistance(this.bgImageColor,colors[r][c])>Globals.SPLIT_THRESHOLD)
+        if(MyUtils.colorDistance(this.bgImageColor,colors[r][c])>=Globals.SPLIT_THRESHOLD)
           return true;
       }
     }
