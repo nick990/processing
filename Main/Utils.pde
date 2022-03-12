@@ -42,7 +42,9 @@
         globalsAsStringList.add("TILES_INDEXES_VALID="+ArrayIntToString(Globals.TILES_INDEXES_VALID));
         globalsAsStringList.add("STROKE_WEIGHT="+Globals.STROKE_WEIGHT);
         globalsAsStringList.add("DIAMETER="+Globals.DIAMETER);
-        globalsAsStringList.add("PADDING="+Globals.PADDING);
+        globalsAsStringList.add("BICOLOR="+Globals.BICOLOR);
+        globalsAsStringList.add("COLOR1="+hex(Globals.COLOR1));
+        globalsAsStringList.add("COLOR2="+hex(Globals.COLOR2));
 
         String[] globalsAsStringArray = new String[globalsAsStringList.size()];
         globalsAsStringArray = globalsAsStringList.toArray(globalsAsStringArray);

@@ -6,18 +6,21 @@ import java.text.DecimalFormat;
 int PADDING = Globals.TILE_SIZE/2;
 int window_width;
 int window_height;
+Random random = new Random();
 
 // Cambia le constanti globali per randomizzare la generazione
 void randomize(){
-//   int max_levels = 5;
-//   double min_rate = 0.2;
-//   double max_rate = 0.8;
-//   int corner_max=3;
-//   Globals.LEVELS=new Random().nextInt(max_levels)+1;
-//   Globals.SPLIT_RATE=new Random().nextDouble()*(max_rate-min_rate)+min_rate;
-//   Globals.CORNER=new Random().nextInt(corner_max)+1;
-  TileProviderSingleton.getInstance().generateRandomIndexes(-1);
-  //Globals.COLOR_FACTOR = new Random().nextDouble()*0.9+0.1;
+  //   int max_levels = 5;
+  //   double min_rate = 0.2;
+  //   double max_rate = 0.8;
+  //   int corner_max=3;
+  //   Globals.LEVELS=new Random().nextInt(max_levels)+1;
+  //   Globals.SPLIT_RATE=new Random().nextDouble()*(max_rate-min_rate)+min_rate;
+  //   Globals.CORNER=new Random().nextInt(corner_max)+1;
+  //  Globals.COLOR_FACTOR = new Random().nextDouble()*0.9+0.1;
+  //TileProviderSingleton.getInstance().generateRandomIndexes(-1);
+  //Globals.COLOR1=color(random(255),random(255),random(255),random(255));
+  //Globals.COLOR2=color(random(255),random(255),random(255),random(255));
 }
 
 // Genera un nuovo albero
@@ -119,6 +122,13 @@ ArrayList<Tile> generate4(){
   return firstLevel;
 }
 
+void setTint(){
+  int tintColor = Globals.COLOR1;
+  if(random.nextBoolean()){
+    tintColor = Globals.COLOR2;
+  }
+  tint(tintColor);
+}
 
 void settings(){
   Globals.mosaic_width = (int)((Globals.COLS-1)*(Globals.TILE_SIZE*(1-2.0*Globals.TILE_PADDING_RATIO))+Globals.TILE_SIZE);
@@ -137,14 +147,15 @@ void setup() {
   Globals.init(this);
 }
 void draw() {
-    background(0);
+   
     translate(PADDING,PADDING);  
-     for(int j=0;j<19;j++){
+     for(int j=0;j<10;j++){
+        background(255);
         println("-----"+j+"-----");
         randomize();
         String fileName =getFileName();
         println(fileName);
-        ArrayList<Tile> tree = generate4();
+        ArrayList<Tile> tree = generate();
         ArrayList<Tile> flatten = getFlattenTree(tree);
         sortFlattenTreeByY(flatten,true);
         sortFlattenTreeByX(flatten,true);
@@ -153,7 +164,12 @@ void draw() {
             Tile t = flatten.get(i);
             if(i%100==0)
                 println((i+1)+"/"+flatten.size());
-            t.draw(true);
+            if(Globals.BICOLOR){
+              setTint();
+              t.draw(false);
+            }else{
+              t.draw(true);
+            }
         }
         save("out/"+fileName+".jpg");
         saveGlobals("out/"+fileName+".txt");

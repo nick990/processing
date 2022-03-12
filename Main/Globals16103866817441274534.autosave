@@ -7,27 +7,27 @@ public class Globals{
     public static void init(PApplet app){
         Globals.app=app;
         Globals.TILES_INDEXES_VALID=new ArrayList<Integer>();
-         Globals.TILES_INDEXES_VALID.add(0);
+        // Globals.TILES_INDEXES_VALID.add(0);
         // Globals.TILES_INDEXES_VALID.add(1);
-         Globals.TILES_INDEXES_VALID.add(2);
+        // Globals.TILES_INDEXES_VALID.add(2);
         // Globals.TILES_INDEXES_VALID.add(3);
         //Globals.TILES_INDEXES_VALID.add(4);
         // Globals.TILES_INDEXES_VALID.add(5);
         // Globals.TILES_INDEXES_VALID.add(6);
         // Globals.TILES_INDEXES_VALID.add(7);
          //Globals.TILES_INDEXES_VALID.add(8);
-        Globals.TILES_INDEXES_VALID.add(9);
+        // Globals.TILES_INDEXES_VALID.add(9);
        //  Globals.TILES_INDEXES_VALID.add(10);
        //  Globals.TILES_INDEXES_VALID.add(11);
        //  Globals.TILES_INDEXES_VALID.add(12);
         // Globals.TILES_INDEXES_VALID.add(13);
-         Globals.TILES_INDEXES_VALID.add(14);
+        // Globals.TILES_INDEXES_VALID.add(14);
         
     }
     public static double TILE_PADDING_RATIO=1.0/5.0;
-    public static int TILE_SIZE=5000;
-    public static int COLS=6;
-    public static int ROWS=6;
+    public static int TILE_SIZE=500;
+    public static int COLS=8;
+    public static int ROWS=8;
     public static int SPLIT_THRESHOLD=0;
     public static int PADDING = TILE_SIZE/2;
     public static int CORNER=4;
@@ -47,12 +47,4 @@ public class Globals{
     public static int mosaic_height;
     public static float STROKE_WEIGHT = 1;
     public static float DIAMETER = 200;
-    // ultimate grey = 949398
-    // illuminating = F5DF4D
-    
-    // living coral = FC766A
-    // pacific coast = 5B84B1
-    public static int COLOR1=0xC8FC766A;
-    public static int COLOR2=0xC85B84B1;
-    public static boolean BICOLOR=true;
 }
