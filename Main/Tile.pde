@@ -53,12 +53,12 @@ class Tile{
         }
         else{
          this.bgImage.filter(GRAY); 
-         tint(MyUtils.getAvgColor(this.bgImage));
+         tint(MyUtils.getAvgColor(this.bgImage),Globals.ALPHA);
         // tint(this.bgColor);
         }
       }
       else
-        tint(this.bgColor);
+        tint(this.bgColor,Globals.ALPHA);
     }
     image(this.image,x,y,this.size,this.size);
     noTint();

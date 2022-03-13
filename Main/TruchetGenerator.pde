@@ -19,6 +19,7 @@ void randomize(){
   //   Globals.CORNER=new Random().nextInt(corner_max)+1;
   //  Globals.COLOR_FACTOR = new Random().nextDouble()*0.9+0.1;
   TileProviderSingleton.getInstance().generateRandomIndexes(-1);
+  Globals.STARTING_NEGATIVE=random.nextBoolean();
   //Globals.COLOR1=color(random(255),random(255),random(255),random(255));
   //Globals.COLOR2=color(random(255),random(255),random(255),random(255));
 }
@@ -30,7 +31,7 @@ public ArrayList<Tile> generate(){
   for(int r=0;r<Globals.ROWS;r++){
     for(int c=0;c<Globals.COLS;c++){ 
       int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
-      boolean negative=false;
+      boolean negative=Globals.STARTING_NEGATIVE;
       firstLevel.add(new Tile(r,c,imageIndex,negative,0,0,0,null));
     }
   }
@@ -54,7 +55,7 @@ ArrayList<Tile> generate2(){
   for(int r=0;r<Globals.ROWS;r++){
     for(int c=0;c<Globals.COLS;c++){ 
       int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
-      boolean negative=false;
+      boolean negative=Globals.STARTING_NEGATIVE;
       Tile t = new Tile(r,c,imageIndex,negative,0,0,0,null);
       firstLevel.add(t);
       t.split(c+1);
@@ -69,12 +70,13 @@ ArrayList<Tile> generate3(){
   for(int r=0;r<Globals.ROWS;r++){
     for(int c=0;c<Globals.COLS;c++){ 
       int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
-      boolean negative=false;
+      boolean negative=Globals.STARTING_NEGATIVE;
       Tile t = new Tile(r,c,imageIndex,negative,0,0,0,null);
       firstLevel.add(t);      
       int levelFromR=r;
       int levelFromC=c;
       int depth = Math.min(levelFromC,levelFromR);
+      depth = Math.min(depth,Globals.LEVELS-1);
       t.split(depth);
     }
   }
@@ -87,7 +89,7 @@ ArrayList<Tile> generate4(){
   for(int r=0;r<Globals.ROWS;r++){
     for(int c=0;c<Globals.COLS;c++){ 
       int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
-      boolean negative=false;
+      boolean negative=Globals.STARTING_NEGATIVE;
       Tile t = new Tile(r,c,imageIndex,negative,0,0,0,null);
       int depth=0;
       int corner=Globals.CORNER;
@@ -150,20 +152,20 @@ void setup() {
 void draw() {
    
     translate(PADDING,PADDING);  
-     for(int j=0;j<1;j++){
-        background(255);
+     for(int j=0;j<100;j++){
+        background(0);
         println("-----"+j+"-----");
         randomize();
         String fileName =getFileName();
         println(fileName);
-        ArrayList<Tile> tree = generate();
+        ArrayList<Tile> tree = generate4();
         ArrayList<Tile> flatten = getFlattenTree(tree);
         sortFlattenTreeByY(flatten,true);
         sortFlattenTreeByX(flatten,true);
         sortFlattenTree(flatten);
         for(int i=0;i<flatten.size();i++){
             Tile t = flatten.get(i);
-            if(i%1==0)
+            if(i%100==0)
                 println((i+1)+"/"+flatten.size());
             if(Globals.BICOLOR){
               setTint();

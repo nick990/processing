@@ -25,18 +25,18 @@ public class Globals{
         
     }
     public static double TILE_PADDING_RATIO=1.0/5.0;
-    public static int TILE_SIZE=3000;
-    public static int COLS=14;
-    public static int ROWS=12;
+    public static int TILE_SIZE=3500;
+    public static int COLS=9;
+    public static int ROWS=9;
     public static int SPLIT_THRESHOLD=0;
     public static int PADDING = TILE_SIZE/2;
-    public static int CORNER=4;
-    public static int LEVELS=2;
+    public static int CORNER=3;
+    public static int LEVELS=3;
     public static double SPLIT_RATE = 0.5;
     public static int SMOOTH=8;
     public static int WIDTH=2000;
     public static int HEIGHT=2000;
-    public static int ALPHA = 245;
+    public static int ALPHA = 210;
     public static boolean STARTING_NEGATIVE=true;
 
     public static int LAYER_COLOR_TH=0;
