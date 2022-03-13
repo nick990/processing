@@ -18,7 +18,7 @@ void randomize(){
   //   Globals.SPLIT_RATE=new Random().nextDouble()*(max_rate-min_rate)+min_rate;
   //   Globals.CORNER=new Random().nextInt(corner_max)+1;
   //  Globals.COLOR_FACTOR = new Random().nextDouble()*0.9+0.1;
-  TileProviderSingleton.getInstance().generateRandomIndexes(-1);
+  //TileProviderSingleton.getInstance().generateRandomIndexes(-1);
   Globals.STARTING_NEGATIVE=random.nextBoolean();
   //Globals.COLOR1=color(random(255),random(255),random(255),random(255));
   //Globals.COLOR2=color(random(255),random(255),random(255),random(255));
@@ -152,13 +152,13 @@ void setup() {
 void draw() {
    
     translate(PADDING,PADDING);  
-     for(int j=0;j<100;j++){
+     for(int j=0;j<2;j++){
         background(0);
         println("-----"+j+"-----");
         randomize();
         String fileName =getFileName();
         println(fileName);
-        ArrayList<Tile> tree = generate4();
+        ArrayList<Tile> tree = generate();
         ArrayList<Tile> flatten = getFlattenTree(tree);
         sortFlattenTreeByY(flatten,true);
         sortFlattenTreeByX(flatten,true);
