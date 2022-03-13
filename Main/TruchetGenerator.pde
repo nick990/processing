@@ -152,8 +152,8 @@ void setup() {
 void draw() {
    
     translate(PADDING,PADDING);  
-     for(int j=0;j<2;j++){
-        background(0);
+     for(int j=0;j<20;j++){
+        background(255);
         println("-----"+j+"-----");
         randomize();
         String fileName =getFileName();

@@ -29,18 +29,18 @@ public class Globals{
         
     }
     public static double TILE_PADDING_RATIO=1.0/5.0;
-    public static int TILE_SIZE=500;
-    public static int COLS=9;
-    public static int ROWS=9;
+    public static int TILE_SIZE=5000;
+    public static int COLS=6;
+    public static int ROWS=6;
     public static int SPLIT_THRESHOLD=0;
     public static int PADDING = TILE_SIZE/2;
     public static int CORNER=3;
-    public static int LEVELS=1;
+    public static int LEVELS=3;
     public static double SPLIT_RATE = 0.5;
     public static int SMOOTH=8;
     public static int WIDTH=2000;
     public static int HEIGHT=2000;
-    public static int ALPHA = 255;
+    public static int ALPHA = 220;
     public static boolean STARTING_NEGATIVE=true;
 
     public static int LAYER_COLOR_TH=0;
@@ -58,7 +58,7 @@ public class Globals{
     
     // living coral = FC766A
     // pacific coast = 5B84B1
-    public static int COLOR1=0xC8FC766A;
-    public static int COLOR2=0xC85B84B1;
-    public static boolean BICOLOR=false;
+    public static int COLOR1=0xC8F93822;
+    public static int COLOR2=0xC8FDD20E;
+    public static boolean BICOLOR=true;
 }
