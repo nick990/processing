@@ -18,8 +18,8 @@ void randomize(){
   //   Globals.SPLIT_RATE=new Random().nextDouble()*(max_rate-min_rate)+min_rate;
   //   Globals.CORNER=new Random().nextInt(corner_max)+1;
   //  Globals.COLOR_FACTOR = new Random().nextDouble()*0.9+0.1;
-  //TileProviderSingleton.getInstance().generateRandomIndexes(-1);
-  Globals.STARTING_NEGATIVE=random.nextBoolean();
+  TileProviderSingleton.getInstance().generateRandomIndexes(-3);
+  //Globals.STARTING_NEGATIVE=random.nextBoolean();
   //Globals.COLOR1=color(random(255),random(255),random(255),random(255));
   //Globals.COLOR2=color(random(255),random(255),random(255),random(255));
 }
@@ -152,7 +152,7 @@ void setup() {
 void draw() {
    
     translate(PADDING,PADDING);  
-     for(int j=0;j<20;j++){
+     for(int j=0;j<1;j++){
         background(255);
         println("-----"+j+"-----");
         randomize();

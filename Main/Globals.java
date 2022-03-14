@@ -7,8 +7,8 @@ public class Globals{
     public static void init(PApplet app){
         Globals.app=app;
         Globals.TILES_INDEXES_VALID=new ArrayList<Integer>();
-         //Globals.TILES_INDEXES_VALID.add(0);
-         //Globals.TILES_INDEXES_VALID.add(1);
+         Globals.TILES_INDEXES_VALID.add(0);
+         Globals.TILES_INDEXES_VALID.add(1);
          //Globals.TILES_INDEXES_VALID.add(2);
          //Globals.TILES_INDEXES_VALID.add(3);
         //Globals.TILES_INDEXES_VALID.add(4);
@@ -22,25 +22,25 @@ public class Globals{
        //  Globals.TILES_INDEXES_VALID.add(12);
         // Globals.TILES_INDEXES_VALID.add(13);
         // Globals.TILES_INDEXES_VALID.add(14);
-        Globals.TILES_INDEXES_VALID.add(15);
-        Globals.TILES_INDEXES_VALID.add(16);
-        Globals.TILES_INDEXES_VALID.add(17);
-        Globals.TILES_INDEXES_VALID.add(18);
+      //  Globals.TILES_INDEXES_VALID.add(15);
+      //  Globals.TILES_INDEXES_VALID.add(16);
+      //  Globals.TILES_INDEXES_VALID.add(17);
+      //  Globals.TILES_INDEXES_VALID.add(18);
         
     }
     public static double TILE_PADDING_RATIO=1.0/5.0;
-    public static int TILE_SIZE=5000;
-    public static int COLS=6;
-    public static int ROWS=6;
+    public static int TILE_SIZE=1100;
+    public static int COLS=36;
+    public static int ROWS=10;
     public static int SPLIT_THRESHOLD=0;
-    public static int PADDING = TILE_SIZE/2;
+    public static int PADDING = TILE_SIZE*2;
     public static int CORNER=3;
-    public static int LEVELS=3;
-    public static double SPLIT_RATE = 0.5;
+    public static int LEVELS=1;
+    public static double SPLIT_RATE = 1.0;
     public static int SMOOTH=8;
     public static int WIDTH=2000;
     public static int HEIGHT=2000;
-    public static int ALPHA = 220;
+    public static int ALPHA = 200;
     public static boolean STARTING_NEGATIVE=true;
 
     public static int LAYER_COLOR_TH=0;
@@ -60,5 +60,5 @@ public class Globals{
     // pacific coast = 5B84B1
     public static int COLOR1=0xC8F93822;
     public static int COLOR2=0xC8FDD20E;
-    public static boolean BICOLOR=true;
+    public static boolean BICOLOR=false;
 }

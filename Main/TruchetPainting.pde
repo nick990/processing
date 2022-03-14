@@ -2,11 +2,13 @@ import com.hamoid.*;
 
 import java.util.Random;
 import java.text.DecimalFormat;
-
+Random random = new Random();
 
 
 void randomize(){
- // TileProviderSingleton.getInstance().generateRandomIndexes(-1);
+  //TileProviderSingleton.getInstance().generateRandomIndexes(-2);
+  //Globals.STARTING_NEGATIVE=random.nextBoolean();
+  
 }
 
 PImage img;
@@ -31,7 +33,7 @@ public ArrayList<Tile> generate(){
 }
 
 void settings(){
-  img = loadImage("images/starry.jpg");
+  img = loadImage("images/bacio.jpg");
   // img.filter(GRAY);
   double imgRatio = (double)img.width/(double)img.height;
   Globals.ROWS = (int)(Globals.COLS/imgRatio);
@@ -54,8 +56,8 @@ void setup() {
 void draw() {
    
     translate(Globals.PADDING,Globals.PADDING);
-    for(int step=1;step<=20;step++){
-       background(255);
+    for(int step=1;step<=3;step++){
+       background(0);
       println("----- "+step+" -----");
         String fileName =getFileName()+"-"+step;
         println(fileName);
