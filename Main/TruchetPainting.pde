@@ -6,9 +6,8 @@ Random random = new Random();
 
 
 void randomize(){
-  //TileProviderSingleton.getInstance().generateRandomIndexes(-2);
+  TileProviderSingleton.getInstance().generateRandomIndexes(-2);
   //Globals.STARTING_NEGATIVE=random.nextBoolean();
-  
 }
 
 PImage img;
@@ -32,8 +31,34 @@ public ArrayList<Tile> generate(){
   return tree;
 }
 
+// Genera un nuovo albero
+// Al termine ho flattenTree ordinato e pronto per essere disegnato
+public ArrayList<Tile> generateWithSplit(){  
+  ArrayList<Tile> firstLevel = new ArrayList<Tile>();
+  for(int r=0;r<Globals.ROWS;r++){
+    for(int c=0;c<Globals.COLS;c++){
+      PImage bgImage = imagesGrid[r][c];
+      int imageIndex=TileProviderSingleton.getInstance().getRandomIndex();
+      boolean negative=Globals.STARTING_NEGATIVE;
+      firstLevel.add(new Tile(r,c,imageIndex,negative,0,0,0,bgImage));
+    }
+  }
+  ArrayList<Tile> flattenTree = getFlattenTree(firstLevel);
+
+  // Splitto il [SPLIT_RATE]% di ogni livello
+  for(int level=1;level<Globals.LEVELS;level++){
+    for(Tile t:flattenTree){
+      if(t.layer==level-1 && new Random().nextDouble()<Globals.SPLIT_RATE)
+        t.split(1);
+    }
+    flattenTree = getFlattenTree(flattenTree);
+    sortFlattenTree(flattenTree);
+  }
+  return flattenTree;
+}
+
 void settings(){
-  img = loadImage("images/bacio.jpg");
+  img = loadImage("images/g2.jpg");
   // img.filter(GRAY);
   double imgRatio = (double)img.width/(double)img.height;
   Globals.ROWS = (int)(Globals.COLS/imgRatio);
@@ -56,13 +81,13 @@ void setup() {
 void draw() {
    
     translate(Globals.PADDING,Globals.PADDING);
-    for(int step=1;step<=3;step++){
+    for(int step=1;step<=100;step++){
        background(0);
       println("----- "+step+" -----");
         String fileName =getFileName()+"-"+step;
         println(fileName);
         randomize();
-        ArrayList<Tile> tree = generate();
+        ArrayList<Tile> tree = generateWithSplit();
         ArrayList<Tile> flatten = getFlattenTree(tree);
         sortFlattenTreeByY(flatten,true);
         sortFlattenTreeByX(flatten,true);

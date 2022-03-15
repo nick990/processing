@@ -8,6 +8,8 @@ int window_width;
 int window_height;
 Random random = new Random();
 
+
+
 // Cambia le constanti globali per randomizzare la generazione
 void randomize(){
   //   int max_levels = 5;
@@ -48,6 +50,8 @@ public ArrayList<Tile> generate(){
   }
   return flattenTree;
 }
+
+
 //spliita con le colonne
 ArrayList<Tile> generate2(){  
   ArrayList<Tile> firstLevel = new ArrayList<Tile>();
