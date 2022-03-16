@@ -29,8 +29,8 @@ public class Globals{
         
     }
     public static double TILE_PADDING_RATIO=1.0/5.0;
-    public static int TILE_SIZE=2500;
-    public static int COLS=12;
+    public static int TILE_SIZE=2000;
+    public static int COLS=18;
     public static int ROWS=12;
     public static int SPLIT_THRESHOLD=0;
     public static int PADDING = TILE_SIZE;
