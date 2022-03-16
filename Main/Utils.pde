@@ -28,6 +28,7 @@
 
     public void saveGlobals(String fileName){
         ArrayList<String> globalsAsStringList = new ArrayList<String>();
+        globalsAsStringList.add("TILES_FOLDER="+Globals.TILES_FOLDER);
         globalsAsStringList.add("COLS="+Globals.COLS);
         globalsAsStringList.add("ROWS="+Globals.ROWS);
         globalsAsStringList.add("TILE_SIZE="+Globals.TILE_SIZE);

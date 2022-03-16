@@ -20,8 +20,8 @@ public class TileProviderSingleton {
     imagesNegative = new ArrayList<PImage>();
     for (int i = 1; i <= MAX_TILES_INDEX; i++) {
       app.println("loading tile" + i);
-      images.add(app.loadImage("tiles/tile" + i + ".png"));
-      imagesNegative.add(app.loadImage("tiles/tile" + i + "_neg.png"));
+      images.add(app.loadImage(Globals.TILES_FOLDER+"/tile" + i + ".png"));
+      imagesNegative.add(app.loadImage(Globals.TILES_FOLDER+"/tile" + i + "_neg.png"));
     }
     initTilesIndexes();
   }

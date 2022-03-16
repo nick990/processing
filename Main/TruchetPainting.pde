@@ -6,8 +6,8 @@ Random random = new Random();
 
 
 void randomize(){
-  TileProviderSingleton.getInstance().generateRandomIndexes(-1);
-  Globals.STARTING_NEGATIVE=random.nextBoolean();
+  //TileProviderSingleton.getInstance().generateRandomIndexes(-1);
+  //Globals.STARTING_NEGATIVE=random.nextBoolean();
 }
 
 PImage img;
@@ -58,7 +58,7 @@ public ArrayList<Tile> generateWithSplit(){
 }
 
 void settings(){
-  img = loadImage("images/tesla_bg.jpg");
+  img = loadImage("images/g3.jpg");
   // img.filter(GRAY);
   double imgRatio = (double)img.width/(double)img.height;
   Globals.ROWS = (int)(Globals.COLS/imgRatio);
@@ -81,13 +81,13 @@ void setup() {
 void draw() {
    
     translate(Globals.PADDING,Globals.PADDING);
-    for(int step=1;step<=100;step++){
-       background(0);
+    for(int step=1;step<=1;step++){
+       background(255);
       println("----- "+step+" -----");
         String fileName =getFileName()+"-"+step;
         println(fileName);
         randomize();
-        ArrayList<Tile> tree = generate();
+        ArrayList<Tile> tree = generateWithSplit();
         ArrayList<Tile> flatten = getFlattenTree(tree);
         sortFlattenTreeByY(flatten,true);
         sortFlattenTreeByX(flatten,true);
