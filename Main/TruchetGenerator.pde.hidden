@@ -104,17 +104,17 @@ ArrayList<Tile> generate4(){
           continue;
       }
       //Q2
-      if(r<Globals.ROWS/2&&c>=Globals.COLS/2){
-        depth=Math.min(r,Globals.COLS-1-c);
-         if(r>corner&&Globals.COLS-1-c>corner)
-          continue;
-      }
+     // if(r<Globals.ROWS/2&&c>=Globals.COLS/2){
+     //   depth=Math.min(r,Globals.COLS-1-c);
+     //    if(r>corner&&Globals.COLS-1-c>corner)
+     //     continue;
+     // }
       //Q3
-      if(r>=Globals.ROWS/2&&c<Globals.COLS/2){
-        depth=Math.min(Globals.ROWS-1-r,c);
-         if(Globals.ROWS-1-r>corner&&c>corner)
-          continue;
-      }
+     // if(r>=Globals.ROWS/2&&c<Globals.COLS/2){
+     //   depth=Math.min(Globals.ROWS-1-r,c);
+    //     if(Globals.ROWS-1-r>corner&&c>corner)
+    //      continue;
+    //  }
       // Q4
       if(r>=Globals.ROWS/2&&c>=Globals.COLS/2){        
         depth=Math.min(Globals.ROWS-1-r,Globals.COLS-1-c);
@@ -157,12 +157,12 @@ void draw() {
    
     translate(PADDING,PADDING);  
      for(int j=0;j<1;j++){
-        background(255);
+        background(0);
         println("-----"+j+"-----");
         randomize();
         String fileName =getFileName();
         println(fileName);
-        ArrayList<Tile> tree = generate();
+        ArrayList<Tile> tree = generate4();
         ArrayList<Tile> flatten = getFlattenTree(tree);
         sortFlattenTreeByY(flatten,true);
         sortFlattenTreeByX(flatten,true);
