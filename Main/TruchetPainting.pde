@@ -5,8 +5,8 @@ import java.text.DecimalFormat;
 
 
 void randomize(){
-  TileProviderSingleton.getInstance().generateRandomIndexes(-1);
-  Globals.STARTING_NEGATIVE=random.nextBoolean();
+  //TileProviderSingleton.getInstance().generateRandomIndexes(-1);
+  //Globals.STARTING_NEGATIVE=random.nextBoolean();
 }
 
 PImage img;
@@ -209,7 +209,7 @@ void setup() {
 void draw() {   
     translate(Globals.PADDING,Globals.PADDING);
     for(int step=1;step<=1;step++){
-       background(200);
+       background(Globals.BG);
       println("----- "+step+" -----");
         String fileName =getFileName()+"-"+step;
         println(fileName);

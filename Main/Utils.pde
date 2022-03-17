@@ -28,6 +28,7 @@
 
     public void saveGlobals(String fileName){
         ArrayList<String> globalsAsStringList = new ArrayList<String>();
+        globalsAsStringList.add("BG="+Globals.BG);
         globalsAsStringList.add("TILES_FOLDER="+Globals.TILES_FOLDER);
         globalsAsStringList.add("ALG="+Globals.ALG);
         globalsAsStringList.add("USE_BASE_IMAGE="+Globals.USE_BASE_IMAGE);
