@@ -184,6 +184,14 @@ void settings(){
   println("mosaic: "+Globals.mosaic_width+" x "+Globals.mosaic_height);
 }
 
+//Imposta il colore per il BICOLOR
+void setTintForBicolor(){
+  int tintColor = Globals.COLOR1;
+  if(random.nextBoolean()){
+    tintColor = Globals.COLOR2;
+  }
+  tint(tintColor);
+}
 
 
 
@@ -236,7 +244,12 @@ void draw() {
             Tile t = flatten.get(i);
             if(i%100==0)
                 println((i+1)+"/"+flatten.size());
-            t.draw(true);
+            if(Globals.BICOLOR){
+              setTintForBicolor();
+              t.draw(false);
+            }else{
+              t.draw(true);
+            }
         }
         save("out/"+fileName+".jpg");
         saveGlobals("out/"+fileName+".txt");

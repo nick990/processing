@@ -34,9 +34,9 @@ public class Globals{
     /// 4: Q1,Q4
     /// 5: Split on columns
     /// 6: BottomRight
-    public static int ALG = 6; 
+    public static int ALG = 5; 
     public static String BASE_IMAGE="images/g2.jpg";
-    public static boolean USE_BASE_IMAGE=false;
+    public static boolean USE_BASE_IMAGE=true;
     public static String TILES_FOLDER="tiles/tiles_multiscale";
     public static double TILE_PADDING_RATIO=1.0/5.0;
     public static int TILE_SIZE=200;
@@ -70,5 +70,5 @@ public class Globals{
     // pacific coast = 5B84B1
     public static int COLOR1=0xC8F93822;
     public static int COLOR2=0xC8FDD20E;
-    public static boolean BICOLOR=true;
+    public static boolean BICOLOR=false;
 }
