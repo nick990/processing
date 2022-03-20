@@ -34,18 +34,18 @@ public class Globals{
     /// 4: Q1,Q4
     /// 5: Split on columns
     /// 6: BottomRight
-    public static int BG = 200;
-    public static int ALG = 4; 
-    public static String BASE_IMAGE="images/g2.jpg";
+    public static int BG = 0;
+    public static int ALG = 3; 
+    public static String BASE_IMAGE="images/neon.jpg";
     public static boolean USE_BASE_IMAGE=true;
     public static String TILES_FOLDER="tiles/tiles_multiscale";
     public static double TILE_PADDING_RATIO=1.0/5.0;
-    public static int TILE_SIZE=3100;
-    public static int COLS=10;
-    public static int ROWS=10;
+    public static int TILE_SIZE=3500;
+    public static int COLS=8;
+    public static int ROWS=8;
     public static int SPLIT_THRESHOLD=30;
     public static int PADDING = TILE_SIZE/2;
-    public static int CORNER=3;
+    public static int CORNER=4;
     public static int LEVELS=3;
     public static double SPLIT_RATE =0.5;
     public static int SMOOTH=8;
@@ -72,4 +72,6 @@ public class Globals{
     public static int COLOR1=0xC8F93822;
     public static int COLOR2=0xC8FDD20E;
     public static boolean BICOLOR=false;
+    public static int GREEN_SCREEN = 0xFFFFFFFF;
+    
 }

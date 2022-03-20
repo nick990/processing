@@ -58,7 +58,61 @@
         saveStrings(fileName, globalsAsStringArray);
     }
 
-       public String getFileName(){
+    public String getFileName(){
         String datetime = year()+"-"+month()+"-"+day()+"-"+hour()+"-"+minute()+"-"+second();
         return datetime;
-      }
+    }
+
+    boolean areColorsEqual(color c1, color c2){
+        int r1 = (c1 >> 16 & 0xFF);
+        int g1 = (c1 >> 8 & 0xFF);
+        int b1 = (c1 & 0xFF);
+        int r2 = (c2 >> 16 & 0xFF);
+        int g2 = (c2 >> 8 & 0xFF);
+        int b2 = (c2 & 0xFF);
+        return (r1==r2&&g1==g2&&b1==b2);
+    }
+
+    boolean isPixelInArray(ArrayList<Pixel> pixels, Pixel pixel){
+        for(Pixel p:pixels){
+            if(p.isEqual(pixel)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    Cluster createCluster(PImage mask, Pixel startingPixel){
+        ArrayList<Pixel> pixels = new ArrayList<Pixel>();
+        floodFill(mask,startingPixel,pixels);
+        return new Cluster(pixels);
+    }
+    //popola il campo pixels con tutto il vicinato del pixel passato il cui colore nella maschera è != GREEN_SCREEN
+    void floodFill(PImage mask, Pixel pixel, ArrayList<Pixel> pixels){
+        if(mask.get(pixel.x,pixel.y)==Globals.GREEN_SCREEN){
+            return;
+        }
+        if(isPixelInArray(pixels,pixel)){
+            return;
+        }
+        pixels.add(pixel);
+        ArrayList<Pixel> neig = getNeig(pixel);
+        for(Pixel p:neig){
+            floodFill(mask,p,pixels);
+        }
+    }
+
+    //Ritorna il vicinato di un pixel
+    ArrayList<Pixel> getNeig(Pixel pixel){
+        ArrayList<Pixel> neig = new ArrayList<Pixel>();
+        int xCenter = pixel.x;
+        int yCenter = pixel.y;
+        for(int x = max(0,xCenter-1);x<=min(xCenter+1,Globals.WIDTH-1);x++){
+            for(int y=max(0,yCenter-1);y<=min(yCenter+1,Globals.HEIGHT-1);y++){
+                        Pixel newPixel = new Pixel(x,y);
+                        neig.add(newPixel);
+            }
+        }
+        return neig;
+    }
+    
