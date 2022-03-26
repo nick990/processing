@@ -28,7 +28,7 @@
 
     public void saveGlobals(String fileName){
         ArrayList<String> globalsAsStringList = new ArrayList<String>();
-        globalsAsStringList.add("BG="+Globals.BG);
+        globalsAsStringList.add("BG="+hex(Globals.BG));
         globalsAsStringList.add("TILES_FOLDER="+Globals.TILES_FOLDER);
         globalsAsStringList.add("ALG="+Globals.ALG);
         globalsAsStringList.add("USE_BASE_IMAGE="+Globals.USE_BASE_IMAGE);
@@ -52,6 +52,7 @@
         globalsAsStringList.add("COLOR2="+hex(Globals.COLOR2));
         globalsAsStringList.add("ALPHA="+Globals.ALPHA);
         globalsAsStringList.add("STARTING_NEGATIVE="+Globals.STARTING_NEGATIVE);
+        globalsAsStringList.add("PADDING="+Globals.PADDING);
 
         String[] globalsAsStringArray = new String[globalsAsStringList.size()];
         globalsAsStringArray = globalsAsStringList.toArray(globalsAsStringArray);

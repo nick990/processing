@@ -190,7 +190,7 @@ void setTintForBicolor(){
   if(random.nextBoolean()){
     tintColor = Globals.COLOR2;
   }
-  tint(tintColor);
+  tint(tintColor,Globals.ALPHA);
 }
 
 
@@ -209,7 +209,7 @@ void setup() {
 void draw() {   
     translate(Globals.PADDING,Globals.PADDING);
     for(int step=1;step<=10;step++){
-       background(Globals.BG);
+      background(Globals.BG);
       println("----- "+step+" -----");
         String fileName =getFileName()+"-"+step;
         println(fileName);
@@ -230,6 +230,7 @@ void draw() {
             break;
           case 5:
             tree = generateColumns();
+            break;
           case 6:
             tree = generateBottomRight();
             break;

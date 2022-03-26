@@ -11,11 +11,13 @@ void randomize(){
 
 PImage img;
 PImage mask;
+PImage bg;
 Random random = new Random();
 
 void settings(){
-    img = loadImage("images/mask/prova.png");
-    mask = loadImage("images/mask/mask.png");
+    img = loadImage("images/mask/don.png");
+    mask = loadImage("images/mask/mask_don.png");
+    bg = loadImage("images/mask/bg.jpg");
     Globals.WIDTH =  img.width;
     Globals.HEIGHT = img.height;
     setSize(Globals.WIDTH, Globals.HEIGHT);
@@ -35,6 +37,7 @@ void setup() {
 void draw() {
   ClustersManager clustersManager = new ClustersManager();
   background(Globals.BG);
+  image(bg,0,0);
   for(int x=0;x<Globals.WIDTH;x++){
     println(x+"/"+Globals.WIDTH);
     for(int y=0;y<Globals.HEIGHT;y++){
@@ -45,7 +48,6 @@ void draw() {
         if(!clustersManager.isPixelAlreadyInCluster(pixel)){
           Cluster cluster = createCluster(mask,pixel);
           clustersManager.add(cluster);
-          image(clustersManager.img,0,0);
         }        
       }
     }
