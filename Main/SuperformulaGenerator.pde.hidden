@@ -1,49 +1,61 @@
 import com.hamoid.*;
 
-import com.hamoid.*;
+PImage bg = null;
 
-PImage bg;
 VideoExport videoExport;
-String filename;
+String fileName;
 ArrayList<Superformula> superformulas;
 SuperformulaStateful sf;
 
-PImage generateBackgroundImage(){
-  PImage img = createImage(width,height,RGB);
-  img.loadPixels();
-  for(int x=0;x<img.width;x++){
-    for(int y=0;y<img.height;y++){
-      img.set(x,y,getColorFromPositionInWindow(width-x,height-y));
+void generateBackgroundImage(){
+  PImage imgBase = loadImage(Globals.BASE_IMAGE);
+  PImage[][] bgImagesGrid = MyUtils.getSubimagesGrid(imgBase,Globals.ROWS,Globals.COLS);
+  bg = createImage(Globals.WIDTH, Globals.HEIGHT,RGB);
+  int cellW = Globals.WIDTH/Globals.COLS;
+  int cellH = Globals.HEIGHT/Globals.ROWS;
+  for(int r=0;r<Globals.ROWS;r++){
+    for(int c=0;c<Globals.COLS;c++){
+      int avgColor = MyUtils.getAvgColor(bgImagesGrid[r][c]);
+      for(int x=c*cellW;x<c*cellW+cellW;x++){
+        for(int y=r*cellH;y<r*cellH+cellH;y++){
+          bg.set(x,y,avgColor);
+        }
+      }
     }
   }
-  img.updatePixels();
-  return img;
 }
 
 void settings(){
+  println("settings");
   setSize(Globals.WIDTH,Globals.HEIGHT);
   smooth(Globals.SMOOTH);  
+  println("window: "+ Globals.WIDTH+" x "+Globals.HEIGHT);
 }
 
 void setup(){
-  bg = generateBackgroundImage();
-  filename = getDatetime();
-  videoExport = new VideoExport(this, "out/"+filename+".mp4");
+  MyUtils.init(this);
+  if(Globals.USE_BASE_IMAGE){
+    generateBackgroundImage();
+  }
+  println("setup");
+  fileName = getDatetime();
+ // bg = generateBackgroundImage();
+  videoExport = new VideoExport(this, "out/"+fileName+".mp4");
   videoExport.setFrameRate(Globals.FRAME_RATE);  
   videoExport.startMovie();
 
-  float radius = width/2;
+  float radius = width/4;
   float x=width/2;
   float y=height/2;
-  float a=5;
-  float b=1;
-  float m=6;
+  float a=1;
+  float b=10;
+  float m=10;
   float n1=1;
-  float n2=5;
-  float n3=-10;
+  float n2=3;
+  float n3=-2;
   float delay=PI;
-  generateGrid();
-  sf = new SuperformulaStateful(x,y,a,b,m,n1,n2,n3,radius*0.9,delay);
+  //generateGrid();
+  sf = new SuperformulaStateful(x,y,a,b,m,n1,n2,n3,radius,delay,bg);
 }
 
 void generateGrid(){
@@ -60,7 +72,7 @@ void generateGrid(){
     for(int col=0;col<Globals.COLS;col++){
       float x = radius+col*2*radius;
       float y = radius+row*2*radius;
-      superformulas.add(new Superformula(x,y,a,b,m,n1,n2,n3,radius*0.9,delay));
+      superformulas.add(new Superformula(x,y,a,b,m,n1,n2,n3,radius*0.9,delay,bg));
      delay+=0.1;
       m = random(5,15);      
       //n1 = random(1,8);
@@ -71,7 +83,7 @@ void generateGrid(){
 
 float TIME=0;
 void draw(){
-  background(255);
+   background(Globals.BG);
   // for(Superformula s:superformulas){
   //   s.display(TIME);
   // }
@@ -83,6 +95,8 @@ void draw(){
 void keyPressed() {
   if (key == 'q') {
     videoExport.endMovie();
+    saveGlobals("out/"+fileName
++".txt");
     exit();
   }
   if(key == 's'){

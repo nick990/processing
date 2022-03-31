@@ -12,10 +12,10 @@ class Superformula{
     ArrayList<Float> yValues;
     color fillColor;
     float delay;
-
+    PImage bg=null;
     float last_period=0;
 
-    Superformula(float _centerX, float _centerY, float _a, float _b, float _m, float _n1, float _n2, float _n3, float _size,float _delay){
+    Superformula(float _centerX, float _centerY, float _a, float _b, float _m, float _n1, float _n2, float _n3, float _size,float _delay, PImage _bg){
         centerX = _centerX;
         centerY = _centerY;
         a = _a;
@@ -32,6 +32,7 @@ class Superformula{
         n3Start = _n3;
         size = _size;
         delay=_delay;
+        bg=_bg;
         fillColor=getColorFromPositionInWindow((int)centerX,(int)centerY);
         calcForumla();
     }
@@ -49,25 +50,28 @@ class Superformula{
     }
 
     void calcForumla(float time){    
+        this.a=1+cos(time)*0.3;
+        this.b=0.8+sin(time)*0.05;
+        this.n2=cos(time)*this.n2Start;
+        // // this.a= this.aStart*0.8 + cos(time+delay)*this.aStart*0.2;
+        // float time_b=time+delay;
+        // this.b= map(sin(time_b),-1,1,1,1.02);
+        // float time_n2 = time/2+delay;
+        // this.n2 =  cos(time_n2)* this.n2Start;
+        // int period = (int)((time_n2-PI)/(2*PI));
+        // this.m = this.mStart + period*2;
+        // this.n1+=0.005;
+        // if(last_period!=period){
+        //     last_period=period;
+        //     // this.n3=random(-10,-1);
+        //     this.n3++;
+        //     // float n1_direction=+1;
+        //     // this.n1=max(1,this.n1+n1_direction*0.25);
+        //     println("perdiod:"+period);
+        //     println("n3:"+n3);
+        //     println("n1:"+n1);
+        // }
 
-        // this.a= this.aStart*0.8 + cos(time+delay)*this.aStart*0.2;
-        float time_b=time+delay;
-        this.b= map(sin(time_b),-1,1,1,1.02);
-        float time_n2 = time/2+delay;
-        this.n2 =  cos(time_n2)* this.n2Start;
-        int period = (int)((time_n2-PI)/(2*PI));
-        this.m = this.mStart + period*2;
-        this.n1+=0.005;
-        if(last_period!=period){
-            last_period=period;
-            // this.n3=random(-10,-1);
-            this.n3++;
-            // float n1_direction=+1;
-            // this.n1=max(1,this.n1+n1_direction*0.25);
-            println("perdiod:"+period);
-            println("n3:"+n3);
-            println("n1:"+n1);
-        }
         calcForumla();
     }
 
@@ -80,11 +84,12 @@ class Superformula{
     //shape unica
     void display(){
         translate(centerX,centerY);
-        // fill(fillColor);
-        strokeWeight(4);
+        fill(fillColor);
+        strokeWeight(8);
         stroke(fillColor);
-                beginShape();
+        beginShape();
         for(int i=0; i<xValues.size(); i++){
+            
             vertex(xValues.get(i),yValues.get(i));
         }
         endShape();
@@ -100,14 +105,22 @@ class Superformula{
     // ogni punto è un cerchio
     void display2(){
         translate(centerX,centerY);
-        fill(0);
-        strokeWeight(4);
+        // fill(0);
+        noFill();
+        strokeWeight(1);
         for(int i=0; i<xValues.size(); i++){
-            float x=xValues.get(i);
-            float y=yValues.get(i);
-            fillColor = getColorFromPositionInWindow((int)x,(int)y);
+            float xf = xValues.get(i);
+            float yf = yValues.get(i);
+            int x = (int)xf;
+            int y = (int)yf;
+            int xInWindow = (int)(x+centerX);
+            int yInWindow = (int)(x+centerY);
+            if(bg==null)
+                fillColor = getColorFromPositionInWindow(xInWindow,yInWindow);
+            else
+                fillColor = bg.get(xInWindow,yInWindow);
             stroke(fillColor);
-            ellipse(x, y, 120, 120);
+            ellipse(x, y, 60, 60);
         }
         translate(-centerX,-centerY);
     }
@@ -115,7 +128,7 @@ class Superformula{
 }
 
 class SuperformulaStateful extends Superformula{
-    SuperformulaStateful(float _centerX, float _centerY, float _a, float _b, float _m, float _n1, float _n2, float _n3, float _size,float _delay){
-        super(_centerX,_centerY,_a,_b,_m,_n1,_n2,_n3,_size,_delay);
+    SuperformulaStateful(float _centerX, float _centerY, float _a, float _b, float _m, float _n1, float _n2, float _n3, float _size,float _delay,PImage _bg){
+        super(_centerX,_centerY,_a,_b,_m,_n1,_n2,_n3,_size,_delay,_bg);
     }
 }
