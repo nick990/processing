@@ -50,9 +50,10 @@ class Superformula{
     }
 
     void calcForumla(float time){    
-        this.a=1+cos(time)*0.3;
-        this.b=0.8+sin(time)*0.05;
-        this.n2=cos(time)*this.n2Start;
+        this.a=aStart+cos(time)*0.2;
+        this.b=this.bStart+sin(time)*0.2;
+        this.n2=cos(time/2)*this.n2Start;
+
         // // this.a= this.aStart*0.8 + cos(time+delay)*this.aStart*0.2;
         // float time_b=time+delay;
         // this.b= map(sin(time_b),-1,1,1,1.02);
@@ -107,7 +108,7 @@ class Superformula{
         translate(centerX,centerY);
         // fill(0);
         noFill();
-        strokeWeight(1);
+        strokeWeight(2);
         for(int i=0; i<xValues.size(); i++){
             float xf = xValues.get(i);
             float yf = yValues.get(i);

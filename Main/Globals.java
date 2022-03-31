@@ -35,7 +35,7 @@ public class Globals{
     /// 4: Q1,Q4
     /// 5: Split on columns
     /// 6: BottomRight
-    public static int BG = 0x00000000;
+    public static int BG = 0x00262626;
     public static int ALG = 2; 
     public static String BASE_IMAGE="images/g2.jpg";
     public static boolean USE_BASE_IMAGE=true;
