@@ -35,23 +35,23 @@ public class Globals{
     /// 4: Q1,Q4
     /// 5: Split on columns
     /// 6: BottomRight
-    public static int BG = 0x00262626;
+    public static int BG = 0x000000;
     public static int ALG = 2; 
-    public static String BASE_IMAGE="images/g2.jpg";
+    public static String BASE_IMAGE="images/girl1.png";
     public static boolean USE_BASE_IMAGE=true;
     public static String TILES_FOLDER="tiles/tiles_transparent";
     public static double TILE_PADDING_RATIO=1.0/5.0;
     public static int TILE_SIZE=2500;
-    public static int COLS=20;
-    public static int ROWS=20;
+    public static int COLS=50;
+    public static int ROWS=50;
     public static int SPLIT_THRESHOLD=30;
     public static int PADDING = TILE_SIZE/2;
     public static int CORNER=3;
     public static int LEVELS=2;
     public static double SPLIT_RATE = 0.5;
     public static int SMOOTH=8;
-    public static int WIDTH=1000;
-    public static int HEIGHT=1000;
+    public static int WIDTH=500;
+    public static int HEIGHT=500;
     public static int ALPHA = 200;
     public static boolean STARTING_NEGATIVE=false;
 

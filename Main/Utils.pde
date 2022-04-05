@@ -1,4 +1,5 @@
 
+    /// Salva lo stesso frame per [framesCount] volte
     public void pauseVideo(VideoExport video, int framesCount){
         for(int i=0;i<framesCount;i++)
             video.saveFrame();
@@ -115,5 +116,12 @@
             }
         }
         return neig;
+    }
+
+    color copyColorWithAlpha(color c, int a){
+        int r = (c >> 16 & 0xFF);
+        int g = (c >> 8 & 0xFF);
+        int b = (c & 0xFF);
+        return color(r,g,b,a);
     }
     
