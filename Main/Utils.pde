@@ -29,6 +29,7 @@
 
     public void saveGlobals(String fileName){
         ArrayList<String> globalsAsStringList = new ArrayList<String>();
+        globalsAsStringList.add("MAX_TILES_INDEX="+Globals.MAX_TILES_INDEX);
         globalsAsStringList.add("BG="+hex(Globals.BG));
         globalsAsStringList.add("TILES_FOLDER="+Globals.TILES_FOLDER);
         globalsAsStringList.add("ALG="+Globals.ALG);

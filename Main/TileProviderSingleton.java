@@ -7,9 +7,7 @@ public class TileProviderSingleton {
   private static PApplet app;
   private ArrayList<PImage> images;
   private ArrayList<PImage> imagesNegative;
-  // public int MAX_TILES_INDEX = 15;
-  // public int MAX_TILES_INDEX = 19;
-  public int MAX_TILES_INDEX = 4;
+
   public ArrayList<Integer> TILES_INDEXES;
 
   public static void init(PApplet app) {
@@ -19,7 +17,7 @@ public class TileProviderSingleton {
   private TileProviderSingleton() {
     images = new ArrayList<PImage>();
     imagesNegative = new ArrayList<PImage>();
-    for (int i = 1; i <= MAX_TILES_INDEX; i++) {
+    for (int i = 1; i <= Globals.MAX_TILES_INDEX; i++) {
       app.println("loading tile" + i);
       images.add(app.loadImage(Globals.TILES_FOLDER+"/tile" + i + ".png"));
       imagesNegative.add(app.loadImage(Globals.TILES_FOLDER+"/tile" + i + "_neg.png"));
@@ -29,7 +27,7 @@ public class TileProviderSingleton {
 
   private void initTilesIndexes() {
     TILES_INDEXES = new ArrayList<Integer>();
-    for (int i = 0; i < MAX_TILES_INDEX; i++) {
+    for (int i = 0; i < Globals.MAX_TILES_INDEX; i++) {
       TILES_INDEXES.add(i);
     }
   }
@@ -91,7 +89,7 @@ public class TileProviderSingleton {
       Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(1));
       break;
       case -1:
-      size = new Random().nextInt(MAX_TILES_INDEX) + 1;
+      size = new Random().nextInt(Globals.MAX_TILES_INDEX) + 1;
       break;
       default:
       break;

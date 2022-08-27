@@ -28,6 +28,9 @@ public class Globals{
       // Globals.TILES_INDEXES_VALID.add(18);
 
     }
+    // public int MAX_TILES_INDEX = 15;
+    // public int MAX_TILES_INDEX = 19;
+    public static int MAX_TILES_INDEX = 4;
     /// 1: painting from image
     /// 2: generate with split
     /// 3: frame
@@ -36,14 +39,14 @@ public class Globals{
     /// 6: BottomRight
     public static int BG = 0xFFFFFF;
     public static int ALG = 2; 
-    public static String BASE_IMAGE="images/bg_2.JPG";
+    public static String BASE_IMAGE="images/bg.jpg";
     public static boolean USE_BASE_IMAGE=true;
-    public static String TILES_FOLDER="tiles/tiles_original_transparent";
+    public static String TILES_FOLDER="tiles/tiles_A";
     //public static double TILE_PADDING_RATIO=1.0/5.0;
     public static double TILE_PADDING_RATIO=0.0;
-    public static int TILE_SIZE=200;
-    public static int COLS=10;
-    public static int ROWS=10;
+    public static int TILE_SIZE=2500;
+    public static int COLS=8;
+    public static int ROWS=8;
     public static int SPLIT_THRESHOLD=30;
     public static int PADDING = TILE_SIZE/2;
     public static int CORNER=4;

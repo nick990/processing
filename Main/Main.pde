@@ -208,7 +208,7 @@ void setup() {
 
 void draw() {   
     translate(Globals.PADDING,Globals.PADDING);
-    for(int step=1;step<=10;step++){
+    for(int step=1;step<=25;step++){
       background(Globals.BG);
       println("----- "+step+" -----");
         String fileName =getFileName()+"-"+step;
