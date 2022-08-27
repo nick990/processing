@@ -11,10 +11,10 @@ public class Globals{
       Globals.TILES_INDEXES_VALID.add(1);
       Globals.TILES_INDEXES_VALID.add(2);
       Globals.TILES_INDEXES_VALID.add(3);
-      // Globals.TILES_INDEXES_VALID.add(4);
-      // Globals.TILES_INDEXES_VALID.add(5);
-      // Globals.TILES_INDEXES_VALID.add(6);
-      // Globals.TILES_INDEXES_VALID.add(7);
+      Globals.TILES_INDEXES_VALID.add(4);
+      Globals.TILES_INDEXES_VALID.add(5);
+      Globals.TILES_INDEXES_VALID.add(6);
+      Globals.TILES_INDEXES_VALID.add(7);
       // Globals.TILES_INDEXES_VALID.add(8);
       // Globals.TILES_INDEXES_VALID.add(9);
       // Globals.TILES_INDEXES_VALID.add(10);
@@ -34,16 +34,16 @@ public class Globals{
     /// 4: Q1,Q4
     /// 5: Split on columns
     /// 6: BottomRight
-    public static int BG = 0xFFFFFF;
+    public static int BG = 0x000000;
     public static int ALG = 2; 
-    public static String BASE_IMAGE="images/bg_2.JPG";
-    public static boolean USE_BASE_IMAGE=true;
-    public static String TILES_FOLDER="tiles/tiles_original_transparent";
+    public static String BASE_IMAGE="images/bg.jpg";
+    public static boolean USE_BASE_IMAGE=false;
+    public static String TILES_FOLDER="tiles/tiles_original";
     //public static double TILE_PADDING_RATIO=1.0/5.0;
     public static double TILE_PADDING_RATIO=0.0;
     public static int TILE_SIZE=200;
-    public static int COLS=10;
-    public static int ROWS=10;
+    public static int COLS=12;
+    public static int ROWS=12;
     public static int SPLIT_THRESHOLD=30;
     public static int PADDING = TILE_SIZE/2;
     public static int CORNER=4;
@@ -70,9 +70,10 @@ public class Globals{
     
     // living coral = FC766A
     // pacific coast = 5B84B1
-    public static int COLOR1=0xFF606060;
+    //public static int COLOR1=0xFF606060;
+    public static int COLOR1=0xFFFFFFFF;
     public static int COLOR2=0xFFD6ED17;
-    public static boolean BICOLOR=false;
+    public static boolean BICOLOR=true;
     public static int GREEN_SCREEN = 0xFFFFFFFF;
     
 }

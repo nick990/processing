@@ -7,8 +7,9 @@ public class TileProviderSingleton {
   private static PApplet app;
   private ArrayList<PImage> images;
   private ArrayList<PImage> imagesNegative;
-  public int MAX_TILES_INDEX = 15;
+  // public int MAX_TILES_INDEX = 15;
   // public int MAX_TILES_INDEX = 19;
+  public int MAX_TILES_INDEX = 4;
   public ArrayList<Integer> TILES_INDEXES;
 
   public static void init(PApplet app) {
