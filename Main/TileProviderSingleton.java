@@ -19,8 +19,8 @@ public class TileProviderSingleton {
     imagesNegative = new ArrayList<PImage>();
     for (int i = 1; i <= Globals.MAX_TILES_INDEX; i++) {
       app.println("loading tile" + i);
-      images.add(app.loadImage(Globals.TILES_FOLDER+"/tile" + i + ".png"));
-      imagesNegative.add(app.loadImage(Globals.TILES_FOLDER+"/tile" + i + "_neg.png"));
+      images.add(app.loadImage(Globals.TILES_FOLDER + "/tile" + i + ".png"));
+      imagesNegative.add(app.loadImage(Globals.TILES_FOLDER + "/tile" + i + "_neg.png"));
     }
     initTilesIndexes();
   }
@@ -57,6 +57,37 @@ public class TileProviderSingleton {
     return Globals.TILES_INDEXES_VALID.get(new Random().nextInt(Globals.TILES_INDEXES_VALID.size()));
   }
 
+  // ↑ : tile1 (index 0)
+  // ↓ : tile2 (index 1)
+  // ← : tile3 (index 2)
+  // → : tile4 (index 3)
+  public int getIndexForPattern(int pattern, int row, int col) {
+    /// ↑ ←
+    /// → ↓
+    if (pattern == 1) {
+      if ((row + 1) % 2 != 0) {
+        // riga dispari
+        if ((col + 1) % 2 != 0) {
+          // colonna dispari
+          return 0;
+        } else {
+          // colonna pari
+          return 2;
+        }
+      } else {
+        // riga pari
+        if ((col + 1) % 2 != 0) {
+          // colonna dispari
+          return 3;
+        } else {
+          // colonna pari
+          return 1;
+        }
+      }
+    }
+    return -1;
+  }
+
   // Genera il subset di indici di dimensione size
   // Se size <0:
   // size = -1 : dimensione casuale
@@ -69,30 +100,30 @@ public class TileProviderSingleton {
     Globals.TILES_INDEXES_VALID = new ArrayList<Integer>();
     switch (size) {
       case -5:
-      Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(11));
-      Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(12));
-      Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(13));
-      Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(14));
-      break;
+        Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(11));
+        Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(12));
+        Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(13));
+        Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(14));
+        break;
       case -4:
-      Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(7));
-      Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(8));
-      Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(9));
-      Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(10));
-      break;
+        Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(7));
+        Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(8));
+        Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(9));
+        Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(10));
+        break;
       case -3:
-      Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(2));
-      Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(3));
-      break;
+        Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(2));
+        Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(3));
+        break;
       case -2:
-      Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(0));
-      Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(1));
-      break;
+        Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(0));
+        Globals.TILES_INDEXES_VALID.add(TILES_INDEXES.get(1));
+        break;
       case -1:
-      size = new Random().nextInt(Globals.MAX_TILES_INDEX) + 1;
-      break;
+        size = new Random().nextInt(Globals.MAX_TILES_INDEX) + 1;
+        break;
       default:
-      break;
+        break;
     }
     while ((size) > 0) {
       int i = new Random().nextInt(TILES_INDEXES.size());

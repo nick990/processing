@@ -5,8 +5,8 @@ import java.text.DecimalFormat;
 
 
 void randomize(){
-  TileProviderSingleton.getInstance().generateRandomIndexes(-1);
-  Globals.STARTING_NEGATIVE=random.nextBoolean();
+  //TileProviderSingleton.getInstance().generateRandomIndexes(-1);
+  //Globals.STARTING_NEGATIVE=random.nextBoolean();
 }
 
 PImage img;
@@ -55,6 +55,21 @@ public ArrayList<Tile> generate(){
     sortFlattenTree(flattenTree);
   }
   return flattenTree;
+}
+
+// Genera un nuovo albero usando un pattern
+// Al termine ho flattenTree ordinato e pronto per essere disegnato
+public ArrayList<Tile> generateWithPattern(int pattern){  
+  ArrayList<Tile> firstLevel = new ArrayList<Tile>();
+  for(int r=0;r<Globals.ROWS;r++){
+    for(int c=0;c<Globals.COLS;c++){
+      PImage bgImage = Globals.USE_BASE_IMAGE?imagesGrid[r][c]:null;
+      int imageIndex = TileProviderSingleton.getInstance().getIndexForPattern(pattern,r,c);
+      boolean negative=Globals.STARTING_NEGATIVE;
+      firstLevel.add(new Tile(r,c,imageIndex,negative,0,0,0,bgImage));
+    }
+  }
+  return firstLevel;
 }
 
 ArrayList<Tile> generateFrame(){
@@ -208,7 +223,7 @@ void setup() {
 
 void draw() {   
     translate(Globals.PADDING,Globals.PADDING);
-    for(int step=1;step<=25;step++){
+    for(int step=1;step<=1;step++){
       background(Globals.BG);
       println("----- "+step+" -----");
         String fileName =getFileName()+"-"+step;
@@ -233,6 +248,9 @@ void draw() {
             break;
           case 6:
             tree = generateBottomRight();
+            break;
+          case 7:
+            tree = generateWithPattern(Globals.PATTERN);
             break;
           default: 
             return;
