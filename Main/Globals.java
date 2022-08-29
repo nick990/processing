@@ -42,14 +42,17 @@ public class Globals{
     /// 1:
     /// ↑ ←
     /// → ↓
-    public static int PATTERN = 1;
-    public static int BG = 0x000000;
-    public static String BASE_IMAGE="images/g7.png";
+    /// 2:
+    /// ↑ ↓
+    /// ↓ ↑
+    public static int PATTERN = 2;
+    public static int BG = 0xFFFFFF;
+    public static String BASE_IMAGE="images/bg_1.jpg";
     public static boolean USE_BASE_IMAGE=true;
     public static String TILES_FOLDER="tiles/tiles_A";
     //public static double TILE_PADDING_RATIO=1.0/5.0;
     public static double TILE_PADDING_RATIO=0.0;
-    public static int TILE_SIZE=200;
+    public static int TILE_SIZE=2000;
     public static int COLS=10;
     public static int ROWS=10;
     public static int SPLIT_THRESHOLD=30;

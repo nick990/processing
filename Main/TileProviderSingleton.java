@@ -62,26 +62,49 @@ public class TileProviderSingleton {
   // ← : tile3 (index 2)
   // → : tile4 (index 3)
   public int getIndexForPattern(int pattern, int row, int col) {
-    /// ↑ ←
-    /// → ↓
+    /// [(0,0) (0,1)] ↑ ←
+    /// [(1,0) (1,1)] → ↓
     if (pattern == 1) {
       if ((row + 1) % 2 != 0) {
         // riga dispari
         if ((col + 1) % 2 != 0) {
-          // colonna dispari
+          // colonna dispari [0,0]
           return 0;
         } else {
-          // colonna pari
+          // colonna pari [0,1]
           return 2;
         }
       } else {
         // riga pari
         if ((col + 1) % 2 != 0) {
-          // colonna dispari
+          // colonna dispari [1,0]
           return 3;
         } else {
-          // colonna pari
+          // colonna pari [1,1]
           return 1;
+        }
+      }
+    }
+    /// [(0,0) (0,1)] ↑ ↓
+    /// [(1,0) (1,1)] ↓ ↑
+    if(pattern == 2){
+      if ((row + 1) % 2 != 0) {
+        // riga dispari
+        if ((col + 1) % 2 != 0) {
+          // colonna dispari [0,0]
+          return 0;
+        } else {
+          // colonna pari [0,1]
+          return 1;
+        }
+      } else {
+        // riga pari
+        if ((col + 1) % 2 != 0) {
+          // colonna dispari [1,0]
+          return 1;
+        } else {
+          // colonna pari [1,1]
+          return 0;
         }
       }
     }
