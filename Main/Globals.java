@@ -9,8 +9,8 @@ public class Globals{
       Globals.TILES_INDEXES_VALID=new ArrayList<Integer>();
       Globals.TILES_INDEXES_VALID.add(0);
       Globals.TILES_INDEXES_VALID.add(1);
-      Globals.TILES_INDEXES_VALID.add(2);
-      Globals.TILES_INDEXES_VALID.add(3);
+//      Globals.TILES_INDEXES_VALID.add(2);
+//      Globals.TILES_INDEXES_VALID.add(3);
       // Globals.TILES_INDEXES_VALID.add(4);
       // Globals.TILES_INDEXES_VALID.add(5);
       // Globals.TILES_INDEXES_VALID.add(6);
@@ -30,7 +30,7 @@ public class Globals{
     }
     // public int MAX_TILES_INDEX = 15;
     // public int MAX_TILES_INDEX = 19;
-    public static int MAX_TILES_INDEX = 4;
+    public static int MAX_TILES_INDEX = 2;
     /// 1: painting from image
     /// 2: generate with split
     /// 3: frame
@@ -38,7 +38,7 @@ public class Globals{
     /// 5: Split on columns
     /// 6: BottomRight
     /// 7: Pattern
-    public static int ALG = 7; 
+    public static int ALG = 2; 
     /// 1:
     /// ↑ ←
     /// → ↓
@@ -46,15 +46,16 @@ public class Globals{
     /// ↑ ↓
     /// ↓ ↑
     public static int PATTERN = 2;
-    public static int BG = 0xFFFFFF;
-    public static String BASE_IMAGE="images/bg_1.jpg";
+    public static int BG = 0x000000;
+    public static String BASE_IMAGE="images/white.png";
     public static boolean USE_BASE_IMAGE=true;
-    public static String TILES_FOLDER="tiles/tiles_A";
-    //public static double TILE_PADDING_RATIO=1.0/5.0;
-    public static double TILE_PADDING_RATIO=0.0;
+    public static String TILES_FOLDER="tiles/tiles_glossy";
+    //public static String TILES_FOLDER="tiles/tiles_transparent";
+    public static double TILE_PADDING_RATIO=1.0/5.0;
+    //public static double TILE_PADDING_RATIO=0.0;
     public static int TILE_SIZE=2000;
-    public static int COLS=10;
-    public static int ROWS=10;
+    public static int COLS=5;
+    public static int ROWS=5;
     public static int SPLIT_THRESHOLD=30;
     public static int PADDING = TILE_SIZE/2;
     public static int CORNER=4;
@@ -64,7 +65,7 @@ public class Globals{
     public static int WIDTH=200;
     public static int HEIGHT=200;
     public static int ALPHA = 255;
-    public static boolean STARTING_NEGATIVE=true;
+    public static boolean STARTING_NEGATIVE=false;
 
     public static int LAYER_COLOR_TH=0;
     public static int FRAME_RATE=30;
