@@ -7,14 +7,14 @@ public class Globals{
     public static void init(PApplet app){
       Globals.app=app;
       Globals.TILES_INDEXES_VALID=new ArrayList<Integer>();
-      Globals.TILES_INDEXES_VALID.add(0);
-      Globals.TILES_INDEXES_VALID.add(1);
+//      Globals.TILES_INDEXES_VALID.add(0);
+ //     Globals.TILES_INDEXES_VALID.add(1);
 //      Globals.TILES_INDEXES_VALID.add(2);
-//      Globals.TILES_INDEXES_VALID.add(3);
+      Globals.TILES_INDEXES_VALID.add(3);
       // Globals.TILES_INDEXES_VALID.add(4);
       // Globals.TILES_INDEXES_VALID.add(5);
       // Globals.TILES_INDEXES_VALID.add(6);
-      // Globals.TILES_INDEXES_VALID.add(7);
+       Globals.TILES_INDEXES_VALID.add(7);
       // Globals.TILES_INDEXES_VALID.add(8);
       // Globals.TILES_INDEXES_VALID.add(9);
       // Globals.TILES_INDEXES_VALID.add(10);
@@ -28,9 +28,9 @@ public class Globals{
       // Globals.TILES_INDEXES_VALID.add(18);
 
     }
-    // public int MAX_TILES_INDEX = 15;
-    // public int MAX_TILES_INDEX = 19;
-    public static int MAX_TILES_INDEX = 2;
+    public static int MAX_TILES_INDEX = 15;
+    // public static int MAX_TILES_INDEX = 19;
+    //public static int MAX_TILES_INDEX = 2;
     /// 1: painting from image
     /// 2: generate with split
     /// 3: frame
@@ -46,26 +46,26 @@ public class Globals{
     /// ↑ ↓
     /// ↓ ↑
     public static int PATTERN = 2;
-    public static int BG = 0x000000;
-    public static String BASE_IMAGE="images/white.png";
+    public static int BG = 0x1f1f1f;
+    public static String BASE_IMAGE="images/bg.png";
     public static boolean USE_BASE_IMAGE=true;
-    public static String TILES_FOLDER="tiles/tiles_glossy";
+    public static String TILES_FOLDER="tiles/multiscale/glossy";
     //public static String TILES_FOLDER="tiles/tiles_transparent";
     public static double TILE_PADDING_RATIO=1.0/5.0;
     //public static double TILE_PADDING_RATIO=0.0;
-    public static int TILE_SIZE=2000;
-    public static int COLS=5;
-    public static int ROWS=5;
+    public static int TILE_SIZE=3000;
+    public static int COLS=10;
+    public static int ROWS=10;
     public static int SPLIT_THRESHOLD=30;
     public static int PADDING = TILE_SIZE/2;
     public static int CORNER=4;
-    public static int LEVELS=2;
+    public static int LEVELS=1;
     public static double SPLIT_RATE = 0.5;
     public static int SMOOTH=8;
     public static int WIDTH=200;
     public static int HEIGHT=200;
     public static int ALPHA = 255;
-    public static boolean STARTING_NEGATIVE=false;
+    public static boolean STARTING_NEGATIVE=true;
 
     public static int LAYER_COLOR_TH=0;
     public static int FRAME_RATE=30;
