@@ -5,8 +5,8 @@ import java.text.DecimalFormat;
 
 
 void randomize(){
-  //TileProviderSingleton.getInstance().generateRandomIndexes(-1);
-  //Globals.STARTING_NEGATIVE=random.nextBoolean();
+  TileProviderSingleton.getInstance().generateRandomIndexes(-1);
+  Globals.STARTING_NEGATIVE=random.nextBoolean();
 }
 
 PImage img;
@@ -52,7 +52,7 @@ public ArrayList<Tile> generate(){
         t.split(1);
     }
     flattenTree = getFlattenTree(flattenTree);
-    sortFlattenTree(flattenTree);
+    sortFlattenTree(flattenTree,Globals.ORDER_BY_LAYER_ASC);
   }
   return flattenTree;
 }
@@ -223,7 +223,7 @@ void setup() {
 
 void draw() {   
     translate(Globals.PADDING,Globals.PADDING);
-    for(int step=1;step<=1;step++){
+    for(int step=1;step<=100;step++){
       background(Globals.BG);
       println("----- "+step+" -----");
         String fileName =getFileName()+"-"+step;
@@ -258,7 +258,7 @@ void draw() {
         ArrayList<Tile> flatten = getFlattenTree(tree);
         sortFlattenTreeByY(flatten,true);
         sortFlattenTreeByX(flatten,true);
-        sortFlattenTree(flatten);
+        sortFlattenTree(flatten,Globals.ORDER_BY_LAYER_ASC);
          for(int i=0;i<flatten.size();i++){
             Tile t = flatten.get(i);
             if(i%100==0)

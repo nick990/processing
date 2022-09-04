@@ -38,7 +38,7 @@ public class Globals{
     /// 5: Split on columns
     /// 6: BottomRight
     /// 7: Pattern
-    public static int ALG = 2; 
+    public static int ALG = 3; 
     /// 1:
     /// ↑ ←
     /// → ↓
@@ -46,25 +46,25 @@ public class Globals{
     /// ↑ ↓
     /// ↓ ↑
     public static int PATTERN = 2;
-    public static int BG = 0x1f1f1f;
+    public static int BG = 0xffffff;
     public static String BASE_IMAGE="images/bg.png";
-    public static boolean USE_BASE_IMAGE=true;
+    public static boolean USE_BASE_IMAGE=false;
     public static String TILES_FOLDER="tiles/multiscale/glossy";
     //public static String TILES_FOLDER="tiles/tiles_transparent";
     public static double TILE_PADDING_RATIO=1.0/5.0;
     //public static double TILE_PADDING_RATIO=0.0;
-    public static int TILE_SIZE=3000;
-    public static int COLS=10;
-    public static int ROWS=10;
+    public static int TILE_SIZE=1000;
+    public static int COLS=6;
+    public static int ROWS=6;
     public static int SPLIT_THRESHOLD=30;
     public static int PADDING = TILE_SIZE/2;
     public static int CORNER=4;
-    public static int LEVELS=1;
+    public static int LEVELS=3;
     public static double SPLIT_RATE = 0.5;
     public static int SMOOTH=8;
     public static int WIDTH=200;
     public static int HEIGHT=200;
-    public static int ALPHA = 255;
+    public static int ALPHA = 200;
     public static boolean STARTING_NEGATIVE=true;
 
     public static int LAYER_COLOR_TH=0;
@@ -76,15 +76,16 @@ public class Globals{
     public static int mosaic_width;
     public static int mosaic_height;
     public static float STROKE_WEIGHT = 1;
-    public static float DIAMETER = 200;
+    public static float DIAMETER = 220;
     // ultimate grey = 949398
     // illuminating = F5DF4D
     
     // living coral = FC766A
     // pacific coast = 5B84B1
-    public static int COLOR1=0xFF606060;
-    public static int COLOR2=0xFFD6ED17;
-    public static boolean BICOLOR=false;
+    public static int COLOR1=0xff00203F;
+    public static int COLOR2=0xffADEFD1;
+    public static boolean BICOLOR=true;
     public static int GREEN_SCREEN = 0xFFFFFFFF;
+    public static boolean ORDER_BY_LAYER_ASC = false;
     
 }

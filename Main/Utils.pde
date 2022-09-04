@@ -56,6 +56,8 @@
         globalsAsStringList.add("ALPHA="+Globals.ALPHA);
         globalsAsStringList.add("STARTING_NEGATIVE="+Globals.STARTING_NEGATIVE);
         globalsAsStringList.add("PADDING="+Globals.PADDING);
+        globalsAsStringList.add("ORDER_BY_LAYER_ASC="+Globals.ORDER_BY_LAYER_ASC);
+        
 
         String[] globalsAsStringArray = new String[globalsAsStringList.size()];
         globalsAsStringArray = globalsAsStringList.toArray(globalsAsStringArray);
