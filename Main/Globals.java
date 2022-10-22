@@ -46,17 +46,17 @@ public class Globals{
     /// ↑ ↓
     /// ↓ ↑
     public static int PATTERN = 2;
-    public static int BG = 0x00000000;
-    public static String BASE_IMAGE="images/bg.png";
+    public static int BG = 0x181818;
+    public static String BASE_IMAGE="images/bg.jpg";
     public static boolean USE_BASE_IMAGE=true;
-    public static String TILES_FOLDER="tiles/pattern/A";
+    public static String TILES_FOLDER="tiles/pattern/C/transparent";
     //public static String TILES_FOLDER="tiles/tiles_transparent";
     // 0 per pattern
    // public static double TILE_PADDING_RATIO=1.0/5.0;
     public static double TILE_PADDING_RATIO=0.0;
-    public static int TILE_SIZE=200;
-    public static int COLS=12;
-    public static int ROWS=12;
+    public static int TILE_SIZE=2000;
+    public static int COLS=11;
+    public static int ROWS=11;
     public static int SPLIT_THRESHOLD=30;
     public static int PADDING = TILE_SIZE/2;
     public static int CORNER=4;
@@ -65,7 +65,7 @@ public class Globals{
     public static int SMOOTH=8;
     public static int WIDTH=200;
     public static int HEIGHT=200;
-    public static int ALPHA = 230;
+    public static int ALPHA = 255;
     public static boolean STARTING_NEGATIVE=false;
 
     public static int LAYER_COLOR_TH=0;
