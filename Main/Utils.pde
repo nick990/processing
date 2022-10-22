@@ -34,6 +34,7 @@
         globalsAsStringList.add("TILES_FOLDER="+Globals.TILES_FOLDER);
         globalsAsStringList.add("ALG="+Globals.ALG);
         globalsAsStringList.add("PATTERN="+Globals.PATTERN);
+        globalsAsStringList.add("TILE_PADDING_RATIO="+Globals.TILE_PADDING_RATIO);
         globalsAsStringList.add("USE_BASE_IMAGE="+Globals.USE_BASE_IMAGE);
         globalsAsStringList.add("BASE_IMAGE="+Globals.BASE_IMAGE);
         globalsAsStringList.add("COLS="+Globals.COLS);

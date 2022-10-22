@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 
 void randomize(){
   //TileProviderSingleton.getInstance().generateRandomIndexes(-1);
- // Globals.STARTING_NEGATIVE=random.nextBoolean();
+  //Globals.STARTING_NEGATIVE=random.nextBoolean();
 }
 
 PImage img;

@@ -28,9 +28,9 @@ public class Globals{
       // Globals.TILES_INDEXES_VALID.add(18);
 
     }
-    public static int MAX_TILES_INDEX = 4;
+    //public static int MAX_TILES_INDEX = 15;
     // public static int MAX_TILES_INDEX = 19;
-    //public static int MAX_TILES_INDEX = 2;
+    public static int MAX_TILES_INDEX = 4;
     /// 1: painting from image
     /// 2: generate with split
     /// 3: frame
@@ -38,28 +38,29 @@ public class Globals{
     /// 5: Split on columns
     /// 6: BottomRight
     /// 7: Pattern
-    public static int ALG = 7; 
+    public static int ALG = 7;
     /// 1:
     /// ↑ ←
     /// → ↓
     /// 2:
     /// ↑ ↓
     /// ↓ ↑
-    public static int PATTERN = 1;
-    public static int BG = 0x000000;
-    public static String BASE_IMAGE="images/bg.jpg";
+    public static int PATTERN = 2;
+    public static int BG = 0x00000000;
+    public static String BASE_IMAGE="images/bg.png";
     public static boolean USE_BASE_IMAGE=true;
-    public static String TILES_FOLDER="tiles/pattern/B/transparent";
+    public static String TILES_FOLDER="tiles/pattern/A";
     //public static String TILES_FOLDER="tiles/tiles_transparent";
-    public static double TILE_PADDING_RATIO=1.0/5.0;
-    //public static double TILE_PADDING_RATIO=0.0;
-    public static int TILE_SIZE=2500;
-    public static int COLS=14;
-    public static int ROWS=14;
+    // 0 per pattern
+   // public static double TILE_PADDING_RATIO=1.0/5.0;
+    public static double TILE_PADDING_RATIO=0.0;
+    public static int TILE_SIZE=200;
+    public static int COLS=12;
+    public static int ROWS=12;
     public static int SPLIT_THRESHOLD=30;
     public static int PADDING = TILE_SIZE/2;
     public static int CORNER=4;
-    public static int LEVELS=3;
+    public static int LEVELS=2;
     public static double SPLIT_RATE = 0.5;
     public static int SMOOTH=8;
     public static int WIDTH=200;
