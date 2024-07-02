@@ -12,13 +12,12 @@ void setup(){
     CIRCLES_NUMBER = 6;
     OFFSET = width/2/(CIRCLES_NUMBER+1);
     PADDING = OFFSET;
-    COLOR_BG = color(#fdf0d5);
+    COLOR_BG = color(#8ecae6);
     PALETTE = new ArrayList<Integer>();
-    PALETTE.add(color(#264653));
-    PALETTE.add(color(#2a9d8f));
-    PALETTE.add(color(#e9c46a));
-    PALETTE.add(color(#f4a261));
-    PALETTE.add(color(#e76f51));
+    PALETTE.add(color(#219ebc));
+    PALETTE.add(color(#023047));
+    PALETTE.add(color(#ffb703));
+    PALETTE.add(color(#fb8500));
 }
 
 void draw() {
