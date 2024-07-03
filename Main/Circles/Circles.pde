@@ -37,7 +37,7 @@ void setup(){
       if(i==CIRCLES_NUMBER-1){
         circle = new CircleCenter(xCenter, yCenter, radius);
       }else{
-        circle = new Circle(xCenter, yCenter, radius, clockwise);
+        circle = new Circle(xCenter, yCenter, radius, clockwise, 4);
       }
       circles.add(circle);
     }
@@ -57,11 +57,11 @@ void draw() {
         c.rotate();
       }
 
-      // String fileName = "frames/" + (nf(++frame,6)) + ".png";
-      // save(fileName);
-      // if(frame==300){
-      //   exit();
-      // } 
+      String fileName = "frames/" + (nf(++frame,6)) + ".png";
+      save(fileName);
+      if(frame==300){
+        exit();
+      } 
   
 }
 

@@ -11,12 +11,12 @@ class CircleCenter extends AbstractCircle{
         c = changeAlpha(c,random(ALPHA_MIN,ALPHA_MAX));
         float alpha = 0.0;
         float beta = PI;
-        this.arcs.add(new Arc(x, y, radius, c, alpha, beta,0));
+        this.arcs.add(new Arc(x, y, radius, c, alpha, beta));
         float gamma = beta;
         float delta = TWO_PI + alpha;
         c = getRandomColor();
         c = changeAlpha(c,random(ALPHA_MIN,ALPHA_MAX));
-        this.arcs.add(new Arc(x, y, radius, c,gamma,delta,0));
+        this.arcs.add(new Arc(x, y, radius, c,gamma,delta));
   }
   
   void rotate(){
