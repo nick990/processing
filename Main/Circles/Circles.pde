@@ -11,7 +11,7 @@ float ALPHA_MIN = 200;
 float ALPHA_MAX = 255;
 ArrayList<Integer> PALETTE;
 ArrayList<Integer> CHOOSEN_INDEXES;
-ArrayList<Circle> circles;
+ArrayList<AbstractCircle> circles;
 
 void setup(){
     size(500,500);
@@ -27,38 +27,21 @@ void setup(){
     PALETTE.add(color(#ff9f1c));
     CHOOSEN_INDEXES = new ArrayList<Integer>();
 
-    circles = new ArrayList<Circle>();
+    circles = new ArrayList<AbstractCircle>();
     float xCenter = width/2;
     float yCenter = height/2;
-    //Creo i cerchi
     for(int i=0; i<CIRCLES_NUMBER; i++){
-      float r= width/2 - PADDING - OFFSET*i;
-      Circle bgCircle=new Circle(xCenter,yCenter,r,COLOR_BG,0,TWO_PI);
-      circles.add(bgCircle);
-      color c = getRandomColor();
-      c = changeAlpha(c,random(ALPHA_MIN,ALPHA_MAX));
-      float alpha = random(0,TWO_PI);
-      float beta = alpha + random(PI/3.0,PI*4.0/3.0);      
-      float speed = random(0.03,0.1);
-      if(i%2==0){
-        speed = -speed;
-      }
+      float radius = width/2 - PADDING - OFFSET*i;
+      boolean clockwise = i%2!=0;
+      AbstractCircle circle;
       if(i==CIRCLES_NUMBER-1){
-        c = COLOR_BG;
-        alpha = 0.0;
-        beta = PI;
-        speed = 0.0;
+        circle = new CircleCenter(xCenter, yCenter, radius);
+      }else{
+        circle = new Circle(xCenter, yCenter, radius, clockwise);
       }
-          
-      Circle circle1 = new Circle(xCenter, yCenter, r, c, alpha, beta,speed);
-      circles.add(circle1);
-      float gamma = beta;
-      float delta = TWO_PI + alpha;
-      c = getRandomColor();
-      c = changeAlpha(c,random(ALPHA_MIN,ALPHA_MAX));
-      Circle circle2 = new Circle(xCenter, yCenter, r, c,gamma,delta,speed);
-      circles.add(circle2);
-    }  
+      circles.add(circle);
+    }
+ 
 }
 
 int frame=0;
@@ -69,18 +52,19 @@ void draw() {
       stroke(COLOR_BG);
       strokeWeight(STROKE_WEIGHT);      
       
-      for(Circle c: circles){
+      for(AbstractCircle c: circles){
         c.draw();
         c.rotate();
       }
 
-      String fileName = "frames/" + (nf(++frame,6)) + ".png";
-      save(fileName);
-      if(frame==300){
-        exit();
-      }  
+      // String fileName = "frames/" + (nf(++frame,6)) + ".png";
+      // save(fileName);
+      // if(frame==300){
+      //   exit();
+      // } 
   
 }
+
 
 // Return colorc c with alpha channel = newAlpha
 color changeAlpha(color c, float newAlpha) {
