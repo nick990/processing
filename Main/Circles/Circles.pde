@@ -7,15 +7,15 @@ float OFFSET;
 float CIRCLES_NUMBER;
 float STROKE_WEIGHT;
 color COLOR_BG;
-float ALPHA_MIN = 255;
+float ALPHA_MIN = 200;
 float ALPHA_MAX = 255;
 ArrayList<Integer> PALETTE;
 ArrayList<Integer> CHOOSEN_INDEXES;
 ArrayList<Circle> circles;
 
 void setup(){
-    size(2000,2000);
-    CIRCLES_NUMBER = 6;
+    size(500,500);
+    CIRCLES_NUMBER = 5;
     OFFSET = width/2.0/(CIRCLES_NUMBER+1);
     PADDING = OFFSET;
     STROKE_WEIGHT = OFFSET/4.0;
@@ -34,7 +34,7 @@ void setup(){
     for(int i=0; i<CIRCLES_NUMBER; i++){
       float r= width/2 - PADDING - OFFSET*i;
       Circle bgCircle=new Circle(xCenter,yCenter,r,COLOR_BG,0,TWO_PI);
-      
+      circles.add(bgCircle);
       color c = getRandomColor();
       c = changeAlpha(c,random(ALPHA_MIN,ALPHA_MAX));
       float alpha = random(0,TWO_PI);
