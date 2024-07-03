@@ -7,31 +7,32 @@ float OFFSET;
 float CIRCLES_NUMBER;
 float STROKE_WEIGHT;
 color COLOR_BG;
-float ALPHA_MIN = 200;
+float ALPHA_MIN = 255;
 float ALPHA_MAX = 255;
 ArrayList<Integer> PALETTE;
 ArrayList<Integer> CHOOSEN_INDEXES;
 ArrayList<AbstractCircle> circles;
 
 void setup(){
-    size(500,500);
-    CIRCLES_NUMBER = 5;
-    OFFSET = width/2.0/(CIRCLES_NUMBER+1);
-    PADDING = OFFSET;
+    size(4000,4000);
+    CIRCLES_NUMBER = 4;
+    PADDING = width/(CIRCLES_NUMBER*2.0)/1.5;
+    OFFSET = ((width/2.0)-PADDING)/(CIRCLES_NUMBER);
     STROKE_WEIGHT = OFFSET/4.0;
-    COLOR_BG = color(#fdfffc);
+    COLOR_BG = color(#2b2d42);
     PALETTE = new ArrayList<Integer>();
-    PALETTE.add(color(#011627));
-    PALETTE.add(color(#2ec4b6));
-    PALETTE.add(color(#e71d36));
-    PALETTE.add(color(#ff9f1c));
+    PALETTE.add(color(#2b2d42));
+    PALETTE.add(color(#faf0ca));
+    PALETTE.add(color(#f4d35e));
+    PALETTE.add(color(#ee964b));
+    PALETTE.add(color(#f95738));
     CHOOSEN_INDEXES = new ArrayList<Integer>();
 
     circles = new ArrayList<AbstractCircle>();
     float xCenter = width/2;
     float yCenter = height/2;
     for(int i=0; i<CIRCLES_NUMBER; i++){
-      float radius = width/2 - PADDING - OFFSET*i;
+      float radius = OFFSET*(CIRCLES_NUMBER-i);
       boolean clockwise = i%2!=0;
       AbstractCircle circle;
       if(i==CIRCLES_NUMBER-1){
@@ -58,6 +59,7 @@ void draw() {
       }
 
       String fileName = "frames/" + (nf(++frame,6)) + ".png";
+      System.out.println("Saving: " + fileName);
       save(fileName);
       if(frame==300){
         exit();
