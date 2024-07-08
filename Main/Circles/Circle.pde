@@ -13,10 +13,10 @@ class Circle extends AbstractCircle{
         this.arcs = new ArrayList<Arc>();
         this.clockwise = clockwise;
         this.slices = slices;
-        this.speed = speed;
         if(!clockwise){
-            this.speed = -speed;
+            speed = -speed;
         }
+        this.speed = speed;
         Arc bgCircle=new Arc(x,y,radius,COLOR_BG,0,TWO_PI,0);
         this.arcs.add(bgCircle);
         float[] startingAngles = new float[slices];
@@ -33,7 +33,7 @@ class Circle extends AbstractCircle{
             c = changeAlpha(c,random(ALPHA_MIN,ALPHA_MAX));
             float alpha = startingAngles[i];
             float beta = endingAngles[i];
-            this.arcs.add(new Arc(x, y, radius, c, alpha, beta,speed));
+            this.arcs.add(new Arc(x, y, radius, c, alpha, beta, speed));
         }
     }
 
