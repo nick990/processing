@@ -4,16 +4,6 @@ class Arc{
     float startAngle, endAngle;
     float speed;
 
-    Arc(float x, float y, float radius, color colorFill, float startAngle, float endAngle){
-        this.x = x;
-        this.y = y;
-        this.radius = radius;
-        this.colorFill = colorFill;
-        this.startAngle = startAngle;
-        this.endAngle = endAngle;
-        this.speed = 0.0;
-    }
-
     Arc(float x, float y, float radius, color colorFill, float startAngle, float endAngle, float speed){
         this.x = x;
         this.y = y;

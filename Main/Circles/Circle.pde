@@ -6,22 +6,19 @@ class Circle extends AbstractCircle{
     boolean rotate = true;
     int slices;
     float speed;
-    Circle(float x, float y, float radius, boolean clockwise, int slices){
+    Circle(float x, float y, float radius, boolean clockwise, int slices, float speed){
         this.x = x;
         this.y = y;
         this.radius = radius;
         this.arcs = new ArrayList<Arc>();
         this.clockwise = clockwise;
         this.slices = slices;
-
-        Arc bgCircle=new Arc(x,y,radius,COLOR_BG,0,TWO_PI);
-        this.arcs.add(bgCircle);
-        
-        speed = random(VEL_MIN_START,VEL_MAX_START);
+        this.speed = speed;
         if(!clockwise){
-            speed = -speed;
+            this.speed = -speed;
         }
-       
+        Arc bgCircle=new Arc(x,y,radius,COLOR_BG,0,TWO_PI,0);
+        this.arcs.add(bgCircle);
         float[] startingAngles = new float[slices];
         float[] endingAngles = new float[slices];
         float maxAngle = TWO_PI/slices;

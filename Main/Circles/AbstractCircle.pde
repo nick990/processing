@@ -3,6 +3,7 @@ abstract class AbstractCircle {
   float y;
   float radius;
   ArrayList<Arc> arcs;
+  float speed;
 
   public void draw(){
     for(Arc a: arcs){

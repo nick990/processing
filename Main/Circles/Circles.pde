@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 float PADDING;
 float OFFSET;
-float CIRCLES_NUMBER;
+float CIRCLES_NUMBER = 7;
 float STROKE_WEIGHT;
 color COLOR_BG;
 float ALPHA_MIN = 255;
@@ -12,7 +12,7 @@ float ALPHA_MAX = 255;
 ArrayList<Integer> PALETTE;
 ArrayList<Integer> CHOOSEN_INDEXES;
 ArrayList<AbstractCircle> circles;
-float VEL_MIN_START = 0.15;
+float VEL_MIN_START = 0.005;
 float VEL_MAX_START = 0.15;
 float VEL_MIN = 0.001;
 float VEL_MAX = 0.3;
@@ -20,7 +20,6 @@ float VEL_DELTA = 0.001;
 
 void setup(){
     size(400,400);
-    CIRCLES_NUMBER = 5;
     PADDING = width/(CIRCLES_NUMBER*2.0)/1.5;
     OFFSET = ((width/2.0)-PADDING)/(CIRCLES_NUMBER);
     STROKE_WEIGHT = OFFSET/4.0;
@@ -43,7 +42,8 @@ void setup(){
       if(i==CIRCLES_NUMBER-1){
         circle = new CircleCenter(xCenter, yCenter, radius);
       }else{
-        circle = new Circle(xCenter, yCenter, radius, clockwise, 4);
+        float speed = random(VEL_MIN_START,VEL_MAX_START);
+        circle = new Circle(xCenter, yCenter, radius, clockwise, 4, speed);
       }
       circles.add(circle);
     }
@@ -57,11 +57,15 @@ void draw() {
       background(COLOR_BG);
       stroke(COLOR_BG);
       strokeWeight(STROKE_WEIGHT);      
-      
-      for(AbstractCircle c: circles){
+      for(int i=0; i<CIRCLES_NUMBER; i++){
+        AbstractCircle c = circles.get(i);
         c.draw();
         c.rotate();
-        c.speedDown(VEL_DELTA);
+        if(i%2==0){
+          c.speedUp(VEL_DELTA);
+        }else{
+          c.speedDown(VEL_DELTA);
+        }      
       }
 
 
