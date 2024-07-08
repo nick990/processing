@@ -9,6 +9,8 @@ abstract class AbstractCircle {
         a.draw();
     }
   }
-  
+
   abstract void rotate();
+  abstract void speedUp(float delta);
+  abstract void speedDown(float delta);
 }

@@ -5,7 +5,7 @@ class Circle extends AbstractCircle{
     boolean clockwise;
     boolean rotate = true;
     int slices;
-
+    float speed;
     Circle(float x, float y, float radius, boolean clockwise, int slices){
         this.x = x;
         this.y = y;
@@ -17,8 +17,7 @@ class Circle extends AbstractCircle{
         Arc bgCircle=new Arc(x,y,radius,COLOR_BG,0,TWO_PI);
         this.arcs.add(bgCircle);
         
-        //float speed = random(0.03,0.1);
-        float speed = 0.05;
+        speed = random(VEL_MIN_START,VEL_MAX_START);
         if(!clockwise){
             speed = -speed;
         }
@@ -30,7 +29,7 @@ class Circle extends AbstractCircle{
             startingAngles[i] = i*maxAngle;
             endingAngles[i] = (i+1)*maxAngle;
         }
-
+        
 
         for(int i=0; i<slices; i++){
             color c = getRandomColor();
@@ -48,5 +47,33 @@ class Circle extends AbstractCircle{
         for(Arc a: arcs){
             a.rotate();
         }
+    }
+
+    public void speedUp(float delta){
+        if(!clockwise){
+            delta = -delta;
+        }
+        float newSpeed = this.speed + delta;
+        //Se la velocità cambia di segno, allora non la cambio
+        if((speed >= 0 && newSpeed <= 0) || (speed <= 0 && newSpeed >= 0)){
+            return;
+        }
+        //Se la velocità è troppo bassa, allora non la cambio
+        if(abs(newSpeed) < VEL_MIN){
+            return;        
+        }
+        //Se la velocità è troppo alta, allora non la cambio
+        if(abs(newSpeed) > VEL_MAX){
+            return;        
+        }
+        this.speed = newSpeed;
+
+        for(Arc a: arcs){
+            a.speedUp(delta);
+        }
+    }
+
+    public void speedDown(float delta){
+        this.speedUp(-delta);
     }
 }

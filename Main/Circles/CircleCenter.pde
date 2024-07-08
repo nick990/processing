@@ -17,9 +17,17 @@ class CircleCenter extends AbstractCircle{
         c = getRandomColor();
         c = changeAlpha(c,random(ALPHA_MIN,ALPHA_MAX));
         this.arcs.add(new Arc(x, y, radius, c,gamma,delta));
-  }
+    }
   
-  void rotate(){
+    void rotate(){
+        // do nothing
+    }
+
+    void speedUp(float delta){
+        // do nothing
+    }
+
+    void speedDown(float delta){
     // do nothing
-  }
+    }
 }

@@ -34,11 +34,11 @@ class Arc{
       this.endAngle += this.speed;
     }
 
-    void speedUp(){
-      this.speed += 0.01;
+    void speedUp(float delta){
+      this.speed += delta;
     }
 
-    void speedDown(){
-      this.speed -= 0.01;
+    void speedDown(float delta){
+      this.speed -= delta;
     }
 }

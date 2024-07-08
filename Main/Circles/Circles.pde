@@ -12,10 +12,15 @@ float ALPHA_MAX = 255;
 ArrayList<Integer> PALETTE;
 ArrayList<Integer> CHOOSEN_INDEXES;
 ArrayList<AbstractCircle> circles;
+float VEL_MIN_START = 0.15;
+float VEL_MAX_START = 0.15;
+float VEL_MIN = 0.001;
+float VEL_MAX = 0.3;
+float VEL_DELTA = 0.001;
 
 void setup(){
-    size(4000,4000);
-    CIRCLES_NUMBER = 4;
+    size(400,400);
+    CIRCLES_NUMBER = 5;
     PADDING = width/(CIRCLES_NUMBER*2.0)/1.5;
     OFFSET = ((width/2.0)-PADDING)/(CIRCLES_NUMBER);
     STROKE_WEIGHT = OFFSET/4.0;
@@ -56,7 +61,9 @@ void draw() {
       for(AbstractCircle c: circles){
         c.draw();
         c.rotate();
+        c.speedDown(VEL_DELTA);
       }
+
 
       String fileName = "frames/" + (nf(++frame,6)) + ".png";
       System.out.println("Saving: " + fileName);
