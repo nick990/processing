@@ -23,6 +23,10 @@ class CircleCenter extends AbstractCircle{
         // do nothing
     }
 
+    void rotate(float angle){
+        // do nothing
+    }
+
     void speedUp(float delta){
         // do nothing
     }

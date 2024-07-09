@@ -24,6 +24,11 @@ class Arc{
       this.endAngle += this.speed;
     }
 
+    void rotate(float angle){
+      this.startAngle += angle;
+      this.endAngle += angle;
+    }
+
     void speedUp(float delta){
       this.speed += delta;
     }

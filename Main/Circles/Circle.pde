@@ -19,13 +19,31 @@ class Circle extends AbstractCircle{
         this.speed = speed;
         Arc bgCircle=new Arc(x,y,radius,COLOR_BG,0,TWO_PI,0);
         this.arcs.add(bgCircle);
+
         float[] startingAngles = new float[slices];
         float[] endingAngles = new float[slices];
         float maxAngle = TWO_PI/slices;
+        // for(int i=0; i<slices; i++){
+        //     startingAngles[i] = i*maxAngle;
+        //     endingAngles[i] = (i+1)*maxAngle;
+        // }
         for(int i=0; i<slices; i++){
-            startingAngles[i] = i*maxAngle;
-            endingAngles[i] = (i+1)*maxAngle;
+            float sliceAngle = maxAngle*random(0.5,1.0);
+            if(slices ==1){
+                sliceAngle = TWO_PI;
+            }
+            if(i==0){
+                startingAngles[0] = 0;
+                endingAngles[0] = startingAngles[0]+sliceAngle;
+            }else if(i==slices-1){
+                startingAngles[i] = endingAngles[i-1];
+                endingAngles[i] = TWO_PI;
+            }else{
+                startingAngles[i] = endingAngles[i-1];
+                endingAngles[i] = startingAngles[i] + sliceAngle;
+            }
         }
+        
         
 
         for(int i=0; i<slices; i++){
@@ -34,6 +52,15 @@ class Circle extends AbstractCircle{
             float alpha = startingAngles[i];
             float beta = endingAngles[i];
             this.arcs.add(new Arc(x, y, radius, c, alpha, beta, speed));
+        }
+    }
+
+    public void rotate(float angle){
+        if(!rotate){
+            return;
+        }
+        for(Arc a: arcs){
+            a.rotate(angle);
         }
     }
 

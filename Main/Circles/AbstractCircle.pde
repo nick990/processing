@@ -12,6 +12,7 @@ abstract class AbstractCircle {
   }
 
   abstract void rotate();
+  abstract void rotate(float angle);
   abstract void speedUp(float delta);
   abstract void speedDown(float delta);
 }
