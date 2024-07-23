@@ -13,6 +13,7 @@ int transDelta=10;
 boolean firstMousePress = false;
 
 HScrollbar hScrollbar;
+VScrollbar vScrollbar;
 
 void settings(){
   setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
@@ -21,12 +22,14 @@ void settings(){
 void setup(){
   surface.setResizable(true);
   hScrollbar = new HScrollbar(16, 8);
+  vScrollbar = new VScrollbar(16, 8);
 }
 
 void draw(){
   background(0);
   drawCanvas();
   xTrans = -hScrollbar.getXTranslate();
+  yTrans = -vScrollbar.getYTranslate();
   translate(xTrans,yTrans);
   
   int rectWidth = 100;
@@ -43,6 +46,8 @@ void draw(){
   translate(-xTrans,-yTrans);
   hScrollbar.update();
   hScrollbar.display();
+  vScrollbar.update();
+  vScrollbar.display();
   //After it has been used in the sketch, set it back to false
   if (firstMousePress) {
     firstMousePress = false;
@@ -52,21 +57,6 @@ void draw(){
 void mousePressed() {
   if (!firstMousePress) {
     firstMousePress = true;
-  }
-}
-
-void keyPressed() {
-  if (keyCode == RIGHT) {
-    xTrans = max(xTrans-transDelta,-CANVAS_WIDTH+width/2);
-  }
-  if(keyCode == LEFT){
-    xTrans = min(xTrans+transDelta,width/2);
-  }
-  if(keyCode == UP){
-    yTrans = min(yTrans+transDelta,height/2);
-  }
-  if(keyCode == DOWN){
-    yTrans = max(yTrans-transDelta,-CANVAS_HEIGHT+height/2);
   }
 }
 

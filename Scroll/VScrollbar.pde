@@ -1,17 +1,17 @@
-class HScrollbar{
+class VScrollbar{
     int swidth, sheight;    // width and height of bar
     float xpos, ypos;       // x and y position of bar
-    float spos, newspos;    // x position of slider
+    float spos, newspos;    // y position of slider
     float sposMin, sposMax; // max and min values of slider
     int loose;              // how loose/heavy
     boolean over;           // is the mouse over the slider?
     boolean locked;
     float ratio;
 
-    float cursorWidth;
+    float cursorHeight;
 
-    HScrollbar(int sheight, int loose) {
-        this.sheight = sheight;
+    VScrollbar(int swidth, int loose) {
+        this.swidth = swidth;
         setDimensions();
         //Set the starting position as at the far left
         spos = 0;
@@ -21,11 +21,11 @@ class HScrollbar{
     }
     
     void setDimensions(){        
-        this.swidth = width;
-        this.xpos = 0;
-        this.ypos = height-sheight;
-        cursorWidth = 100;
-        sposMax = swidth - cursorWidth;
+        this.sheight = height;
+        this.xpos = width-swidth;
+        this.ypos = 0;
+        cursorHeight = 100;
+        sposMax = sheight - cursorHeight;
     }
 
     void update() {
@@ -42,7 +42,7 @@ class HScrollbar{
             locked = false;
         }
         if (locked) {
-            newspos = constrain(mouseX-sheight/2, sposMin, sposMax);
+            newspos = constrain(mouseY-swidth/2, sposMin, sposMax);
         }
         if (abs(newspos - spos) > 1) {
             spos = spos + (newspos-spos)/loose;
@@ -72,15 +72,15 @@ class HScrollbar{
         } else {
             fill(102, 102, 102);
         }
-        rect(spos, ypos, cursorWidth, sheight);
+        rect(xpos, spos, swidth, cursorHeight);
     }
 
     float getPos() {
         return spos;
     }
 
-    int getXTranslate(){
-        return int(map(spos,sposMin,sposMax,0,CANVAS_WIDTH-width));
+    int getYTranslate(){
+        return int(map(spos,sposMin,sposMax,0,CANVAS_HEIGHT-sheight));
     }
 
 }
