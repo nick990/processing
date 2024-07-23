@@ -21,7 +21,7 @@ class HScrollbar{
     }
     
     void setDimensions(){        
-        this.swidth = width;
+        this.swidth = width-sheight;
         this.xpos = 0;
         this.ypos = height-sheight;
         cursorWidth = 100;

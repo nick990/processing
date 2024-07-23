@@ -21,7 +21,7 @@ class VScrollbar{
     }
     
     void setDimensions(){        
-        this.sheight = height;
+        this.sheight = height - swidth;
         this.xpos = width-swidth;
         this.ypos = 0;
         cursorHeight = 100;
