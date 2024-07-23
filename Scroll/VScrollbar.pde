@@ -8,9 +8,12 @@ class VScrollbar{
     boolean locked;
     float ratio;
 
+    int margin;
+
     float cursorHeight;
 
-    VScrollbar(int swidth, int loose) {
+    VScrollbar(int swidth, int loose, int margin) {
+        this.margin = margin;
         this.swidth = swidth;
         setDimensions();
         //Set the starting position as at the far left
@@ -21,10 +24,10 @@ class VScrollbar{
     }
     
     void setDimensions(){        
-        this.sheight = height - swidth;
+        this.sheight = height-swidth;
         this.xpos = width-swidth;
         this.ypos = 0;
-        cursorHeight = 100;
+        cursorHeight = swidth;
         sposMax = sheight - cursorHeight;
     }
 
@@ -80,7 +83,7 @@ class VScrollbar{
     }
 
     int getYTranslate(){
-        return int(map(spos,sposMin,sposMax,0,CANVAS_HEIGHT-sheight));
+        return int(map(spos,sposMin,sposMax,-margin,CANVAS_HEIGHT-sheight+margin));
     }
 
 }

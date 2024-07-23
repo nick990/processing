@@ -13,6 +13,7 @@ int transDelta=10;
 boolean firstMousePress = false;
 
 int scrollBarSize = 16;
+int scrollBarMargin = 64;
 HScrollbar hScrollbar;
 VScrollbar vScrollbar;
 
@@ -20,14 +21,14 @@ void settings(){
   setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
 }
 
-void setup(){
+void setup(){\
   surface.setResizable(true);
-  hScrollbar = new HScrollbar(scrollBarSize, 8);
-  vScrollbar = new VScrollbar(scrollBarSize, 8);
+  hScrollbar = new HScrollbar(scrollBarSize, 8, scrollBarMargin);
+  vScrollbar = new VScrollbar(scrollBarSize, 8, scrollBarMargin);
 }
 
 void draw(){
-  background(0);
+  background(200);
   drawCanvas();
   xTrans = -hScrollbar.getXTranslate();
   yTrans = -vScrollbar.getYTranslate();

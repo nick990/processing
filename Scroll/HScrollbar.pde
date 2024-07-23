@@ -7,10 +7,12 @@ class HScrollbar{
     boolean over;           // is the mouse over the slider?
     boolean locked;
     float ratio;
+    int margin;
 
     float cursorWidth;
 
-    HScrollbar(int sheight, int loose) {
+    HScrollbar(int sheight, int loose, int margin) {
+        this.margin = margin;
         this.sheight = sheight;
         setDimensions();
         //Set the starting position as at the far left
@@ -24,7 +26,7 @@ class HScrollbar{
         this.swidth = width-sheight;
         this.xpos = 0;
         this.ypos = height-sheight;
-        cursorWidth = 100;
+        cursorWidth = sheight;
         sposMax = swidth - cursorWidth;
     }
 
@@ -80,7 +82,7 @@ class HScrollbar{
     }
 
     int getXTranslate(){
-        return int(map(spos,sposMin,sposMax,0,CANVAS_WIDTH-width));
+        return int(map(spos,sposMin,sposMax,-margin,CANVAS_WIDTH-width+margin));
     }
 
 }
