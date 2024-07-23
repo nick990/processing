@@ -1,13 +1,17 @@
-int WINDOW_WIDTH=2000;
-int WINDOW_HEIGHT=1500;
-int CANVAS_WIDTH = 10000;
-int CANVAS_HEIGHT = 10000;
+int WINDOW_WIDTH=800;
+int WINDOW_HEIGHT=600;
+int CANVAS_WIDTH = 1000;
+int CANVAS_HEIGHT = 1000;
 int xTrans=0;
 int yTrans=0;
 int transDelta=10;
 
 void settings(){
   setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
+}
+
+void setup(){
+  surface.setResizable(true);
 }
 
 void draw(){
@@ -17,23 +21,22 @@ void draw(){
   translate(xTrans,yTrans);
   
   fill(color(255,0,0));
-  rect(WINDOW_WIDTH/2-50,WINDOW_HEIGHT/2-50,100,100);  
+  rect(300,300,100,100);  
 }
 
 void keyPressed() {
   if (keyCode == RIGHT) {
-    xTrans = max(xTrans-transDelta,-CANVAS_WIDTH+WINDOW_WIDTH/2);
+    xTrans = max(xTrans-transDelta,-CANVAS_WIDTH+width/2);
   }
   if(keyCode == LEFT){
-    xTrans = min(xTrans+transDelta,WINDOW_WIDTH/2);
+    xTrans = min(xTrans+transDelta,width/2);
   }
   if(keyCode == UP){
-    yTrans = min(yTrans+transDelta,WINDOW_HEIGHT/2);
+    yTrans = min(yTrans+transDelta,height/2);
   }
   if(keyCode == DOWN){
-    yTrans = max(yTrans-transDelta,-CANVAS_HEIGHT+WINDOW_HEIGHT/2);
+    yTrans = max(yTrans-transDelta,-CANVAS_HEIGHT+height/2);
   }
-  println(xTrans);
 }
 
 void drawCanvas(){
