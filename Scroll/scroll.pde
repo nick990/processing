@@ -20,7 +20,7 @@ void settings(){
 
 void setup(){
   surface.setResizable(true);
-  hScrollbar = new HScrollbar(0, height-8,  16, 8);
+  hScrollbar = new HScrollbar(16, 8);
 }
 
 void draw(){

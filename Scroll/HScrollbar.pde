@@ -10,23 +10,26 @@ class HScrollbar{
 
     float cursorWidth;
 
-    HScrollbar(float xpos, float ypos, int sheight, int loose) {
-        this.swidth = width;
+    HScrollbar(int sheight, int loose) {
         this.sheight = sheight;
-        this.xpos = xpos;
-        this.ypos = ypos-sheight/2;
+        setDimensions();
         //Set the starting position as at the far left
         spos = 0;
         newspos = spos;
         sposMin = xpos;
-        sposMax = xpos + swidth - cursorWidth;
         this.loose = loose;
+    }
+    
+    void setDimensions(){        
+        this.swidth = width;
+        this.xpos = 0;
+        this.ypos = height-sheight;
+        cursorWidth = 100;
+        sposMax = xpos + swidth - cursorWidth;
     }
 
     void update() {
-        this.swidth = width;
-        sposMax = xpos + swidth - cursorWidth;
-        cursorWidth = 100;
+        setDimensions();
         if (overEvent()) {
             over = true;
         } else {
